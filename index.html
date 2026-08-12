@@ -212,7 +212,7 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
     </div>
 
     <div class="hero-art">
-      <img src="assets/hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
+      <img src="hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
       <div class="hero-overlay">
         <div class="cat-bubble" aria-hidden="true">
           <svg viewBox="0 0 120 120">
@@ -505,30 +505,21 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
 <section class="screen s-reflect">
   <div class="content">
     <div class="topline">
-      <div><div class="kicker">Penutup</div><h2>Refleksi Pembelajaran</h2><div class="subtitle">Pilih satu pertanyaan, jawab dengan kalimatmu sendiri, lalu dengarkan jawaban teman.</div></div>
-      <span class="pill">✦ 8 pertanyaan refleksi</span>
+      <div><div class="kicker">Penutup</div><h2>Refleksi Pembelajaran</h2><div class="subtitle">Sentuh satu pernyataan yang paling menggambarkan pengalaman belajarmu hari ini.</div></div>
+      <span class="pill">✦ Refleksi singkat</span>
     </div>
 
     <div class="reflection-grid">
-      <button class="reflect-btn" onclick="showReflection(0)">1. Apa perbedaan <b>Repeat</b> dan <b>Selamanya</b>? Beri satu contoh.</button>
-      <button class="reflect-btn" onclick="showReflection(1)">2. Apa perbedaan <b>Jika–Maka</b> dan <b>Jika–Maka–Jika Tidak</b>?</button>
-      <button class="reflect-btn" onclick="showReflection(2)">3. Apa fungsi operator <b>+</b> dan operator <b>=</b>?</button>
-      <button class="reflect-btn" onclick="showReflection(3)">4. Bagian kode apa yang paling mudah kamu pahami? Mengapa?</button>
-      <button class="reflect-btn" onclick="showReflection(4)">5. Kesalahan apa yang ditemukan kelompokmu saat debugging?</button>
-      <button class="reflect-btn" onclick="showReflection(5)">6. Bagaimana kelompokmu memperbaiki program yang belum berhasil?</button>
-      <button class="reflect-btn" onclick="showReflection(6)">7. Bagaimana pembagian peran membantu kelompokmu bekerja?</button>
-      <button class="reflect-btn" onclick="showReflection(7)">8. Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi?</button>
+      <button class="reflect-btn" onclick="showReflection(0)">🙂 Saya sudah memahami perbedaan <b>ulangi</b> dan <b>selamanya</b>.</button>
+      <button class="reflect-btn" onclick="showReflection(1)">🧠 Saya sudah memahami cara kerja <b>jika</b> dan <b>jika tidak</b>.</button>
+      <button class="reflect-btn" onclick="showReflection(2)">🛠️ Saya dapat mencoba, menemukan kesalahan, dan memperbaiki kode bersama kelompok.</button>
+      <button class="reflect-btn" onclick="showReflection(3)">🌱 Saya masih perlu latihan pada beberapa bagian, tetapi sekarang lebih memahami cara kerja program visual.</button>
     </div>
 
     <div class="card" style="margin-top:16px">
-      <h3>Pertanyaan yang dipilih</h3>
-      <div id="reflectionFb" class="feedback">Sentuh salah satu kartu pertanyaan di atas.</div>
-      <div class="grid3" style="margin-top:14px">
-        <button class="btn green" onclick="confidence('Sudah paham dan bisa menjelaskan.')">🙂 Sudah paham</button>
-        <button class="btn orange" onclick="confidence('Mulai paham tetapi masih perlu latihan.')">😐 Perlu latihan</button>
-        <button class="btn purple" onclick="confidence('Saya ingin bertanya lagi sebelum lanjut.')">🙋 Ingin bertanya</button>
-      </div>
-      <div id="confidenceFb" class="feedback">Pilih juga tingkat pemahamanmu.</div>
+      <h3>Refleksiku Hari Ini</h3>
+      <div id="reflectionFb" class="feedback">Pilih satu pernyataan di atas yang paling sesuai dengan pengalaman belajarmu.</div>
+      <div class="tip" style="margin-top:14px"><b>Guru dapat meminta 2–3 murid</b> menjelaskan secara singkat mengapa mereka memilih pernyataan tersebut.</div>
     </div>
   </div>
 </section>
@@ -853,23 +844,15 @@ function restartQuiz(){qi=0;score=0;renderQuiz()}
 
 // Reflection
 const reflections=[
-  'Apa perbedaan Repeat dan Forever? Berikan satu contoh penggunaan masing-masing.',
-  'Apa perbedaan Jika–Maka dan Jika–Maka–Jika Tidak? Jelaskan dengan bahasamu sendiri.',
-  'Apa fungsi operator + dan operator = pada program Kucing Cerdas?',
-  'Bagian kode apa yang paling mudah kamu pahami hari ini? Mengapa?',
-  'Kesalahan apa yang ditemukan kelompokmu saat program diuji?',
-  'Apa langkah yang dilakukan kelompokmu untuk memperbaiki kesalahan tersebut?',
-  'Bagaimana pembagian peran membantu semua anggota kelompok ikut belajar?',
-  'Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi dan untuk apa?'
+  'Saya sudah memahami perbedaan ulangi dan selamanya.',
+  'Saya sudah memahami cara kerja jika dan jika tidak.',
+  'Saya dapat mencoba, menemukan kesalahan, dan memperbaiki kode bersama kelompok.',
+  'Saya masih perlu latihan pada beberapa bagian, tetapi sekarang lebih memahami cara kerja program visual.'
 ];
 function showReflection(i){
   const fb=document.getElementById('reflectionFb');
   fb.className='feedback good';
-  fb.textContent=reflections[i];
-}
-function confidence(text){
-  const fb=document.getElementById('confidenceFb');
-  fb.className='feedback good';fb.textContent=text;
+  fb.textContent='Pernyataan yang kamu pilih: '+reflections[i];
 }
 
 renderQuiz();
