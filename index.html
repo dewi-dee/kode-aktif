@@ -1,49 +1,795 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>KODE AKTIF — Bahan Ajar Interaktif PID</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#163a78">
+<title>KODE-AKTIF — Bahan Ajar Interaktif Fase D</title>
 <style>
-:root{--bg:#081525;--panel:#10233b;--text:#f7fbff;--muted:#b9c9d8;--a:#37b7ff;--a2:#7be0ff;--good:#43d17d;--warn:#ffd166;--bad:#ff6b6b;--purple:#a970ff;--orange:#ff9f43;--blue:#4d96ff;--sense:#56b8d8}
-*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}body{touch-action:manipulation}.app{height:100%;display:grid;grid-template-rows:auto 1fr auto}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:linear-gradient(90deg,#0f2743,#153b61);border-bottom:1px solid #24486d}.brand{display:flex;align-items:center;gap:10px;min-width:0}.logo{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,var(--a),var(--purple));font-weight:900}.brand h1{font-size:clamp(18px,2.3vw,30px);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand p{margin:2px 0 0;color:var(--muted);font-size:clamp(11px,1.1vw,14px)}
-.actions,.nav,.sim-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.btn{border:0;border-radius:14px;padding:11px 15px;background:#214467;color:#fff;cursor:pointer;font-weight:800;min-height:44px}.btn.primary{background:linear-gradient(135deg,#168fd0,#31b9ff)}.btn.good{background:#1f9b58}.btn.warn{background:#9a6816}.btn.ghost{background:transparent;border:1px solid #365b7f}.btn:focus{outline:3px solid rgba(123,224,255,.35)}
-main{position:relative;overflow:hidden}.screen{position:absolute;inset:0;padding:20px;display:none;overflow:auto}.screen.active{display:block}.content{max-width:1400px;margin:auto}.hero{min-height:100%;display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;max-width:1400px;margin:auto}.hero-card,.card,.visual{background:linear-gradient(145deg,#10243c,#132e4a);border:1px solid #295071;border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.26)}.hero h2{font-size:clamp(34px,5.6vw,72px);line-height:1.03;margin:16px 0 12px}.hero h2 span{color:var(--a2)}.hero p,.card p,.card li{font-size:clamp(16px,1.45vw,21px);line-height:1.55;color:#d8e4ee}.eyebrow,.chip{display:inline-block;padding:7px 11px;border-radius:999px;background:#173e63;color:var(--a2);font-weight:800;margin:3px}.visual{min-height:390px;display:grid;place-items:center}.title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.title-row h2{font-size:clamp(28px,4vw,48px);margin:0}.subtitle{color:var(--muted);font-size:clamp(15px,1.5vw,21px);line-height:1.5}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.block{display:block;width:max-content;max-width:100%;padding:13px 17px;border-radius:12px;color:white;font-weight:900;margin:8px 0;font-size:clamp(16px,1.55vw,23px)}.event{background:#e7b52d;color:#171717}.control{background:var(--orange)}.motion{background:var(--blue)}.sense{background:var(--sense)}.op{background:#59b54c}.looks{background:var(--purple)}.indent{margin-left:28px}.sim{background:#091727;border:1px solid #244c73;border-radius:18px;padding:16px;min-height:210px}.track{position:relative;height:82px;border-radius:17px;background:linear-gradient(90deg,#183650,#214a6a);overflow:hidden;border:1px dashed #4f799c;margin:16px 0}.sprite{position:absolute;left:16px;top:16px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd166,#ff9f43);color:#222;font-weight:900;transition:left .24s ease,transform .25s ease}.feedback{min-height:50px;margin-top:12px;padding:12px 14px;border-radius:14px;background:#12283f;font-size:clamp(16px,1.35vw,20px);display:flex;align-items:center}.feedback.good{border-left:6px solid var(--good)}.feedback.bad{border-left:6px solid var(--bad)}.question{font-size:clamp(21px,2.2vw,31px);font-weight:900;margin:12px 0}.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:#1b3d5d;border:1px solid #2e608c;border-radius:15px;padding:15px;color:#fff;text-align:left;font-weight:800;cursor:pointer;font-size:clamp(16px,1.45vw,21px)}.answer.correct{background:#176a42}.answer.wrong{background:#7b2c35}.builder{display:grid;grid-template-columns:1fr 1fr;gap:16px}.bank,.workspace{min-height:300px;background:#0b1a2a;border:1px dashed #406689;border-radius:18px;padding:14px}.tapblock{display:block;width:100%;text-align:left;border:0;padding:12px 14px;border-radius:11px;margin:8px 0;color:white;font-weight:900;cursor:pointer}.tapblock.event{color:#171717}.empty{color:#7f97aa;text-align:center;padding:56px 10px}.step-list{counter-reset:st;display:grid;gap:10px}.step{display:flex;gap:10px;align-items:flex-start;background:#10243a;border:1px solid #274a69;border-radius:15px;padding:13px}.step:before{counter-increment:st;content:counter(st);min-width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#2b83ba;font-weight:900}.score{font-size:clamp(36px,5vw,66px);font-weight:900;color:var(--a2);text-align:center}.reflection{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.reflect-btn{min-height:120px;border-radius:18px;border:1px solid #2e567d;background:#132e4a;color:#fff;font-weight:900;font-size:clamp(18px,1.8vw,25px);cursor:pointer;padding:14px}.progress{height:9px;background:#102139;border-radius:999px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:linear-gradient(90deg,var(--a),var(--purple));width:0}.hidden{display:none!important}
-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 16px;background:#0b1c2e;border-top:1px solid #244765}.tiny{font-size:12px;color:#8da8bd}.page-indicator{font-weight:800;color:#c7d7e6}
-@media(max-width:900px){.hero,.grid2,.builder{grid-template-columns:1fr}.reflection{grid-template-columns:1fr}.answer-grid{grid-template-columns:1fr}.brand p{display:none}.screen{padding:13px}.visual{min-height:300px}}
+:root{
+  --navy:#0b2a5b; --blue:#168bf2; --cyan:#24c5e8; --green:#38bd77;
+  --lime:#8bd94d; --yellow:#ffd44d; --orange:#ff8b35; --red:#ff5d67;
+  --purple:#8f63e9; --pink:#f35ba1; --ink:#18304b; --muted:#62758a;
+  --paper:#fffdf8; --soft:#f5f9ff; --border:#d9e8f5; --shadow:0 18px 45px rgba(25,55,95,.16);
+  --control:#ffab19; --motion:#4c97ff; --looks:#9966ff; --sense:#5cb1d6; --operator:#59c059;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-rounded,"Segoe UI",Arial,sans-serif;background:#eef7ff;color:var(--ink);overflow:hidden}
+body{touch-action:manipulation}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{height:100%;display:grid;grid-template-columns:245px 1fr}
+.sidebar{
+  height:100%;padding:18px 14px;background:
+  radial-gradient(circle at 30% 5%,rgba(37,176,255,.28),transparent 24%),
+  linear-gradient(180deg,#073170 0%,#082c62 60%,#071f47 100%);
+  color:#fff;display:flex;flex-direction:column;gap:12px;box-shadow:8px 0 30px rgba(4,35,78,.14);z-index:10
+}
+.brand{padding:4px 9px 12px}
+.brand-title{font-size:30px;line-height:1;font-weight:1000;letter-spacing:-1px}
+.brand-title .y{color:var(--yellow)} .brand-title .g{color:#58e499}.brand-title .c{color:#64dcff}
+.brand-sub{font-size:13px;color:#d8edff;margin-top:7px;line-height:1.35}
+.nav-list{display:grid;gap:9px}
+.nav-btn{
+  border:0;color:#fff;text-align:left;min-height:54px;padding:10px 12px;border-radius:17px;
+  display:flex;align-items:center;gap:11px;font-weight:900;transition:.18s transform,.18s filter;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)
+}
+.nav-btn:hover,.nav-btn:focus{transform:translateX(4px);filter:brightness(1.08);outline:none}
+.nav-btn.active{outline:3px solid rgba(255,255,255,.92);outline-offset:-3px}
+.nav-btn span.icon{width:30px;height:30px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:17px}
+.n1{background:linear-gradient(135deg,#188af5,#22b7ee)} .n2{background:linear-gradient(135deg,#24ad72,#55d391)}
+.n3{background:linear-gradient(135deg,#ff9b22,#ffc23d)} .n4{background:linear-gradient(135deg,#875ce3,#b077f4)}
+.n5{background:linear-gradient(135deg,#ff7437,#ff9a2f)} .n6{background:linear-gradient(135deg,#ee4d9a,#ff74b6)}
+.n7{background:linear-gradient(135deg,#20a7ad,#39c7c7)} .n8{background:linear-gradient(135deg,#7258cc,#967fec)}
+.sidebar-note{
+  margin-top:auto;padding:14px;border-radius:18px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);font-size:12px;line-height:1.5;color:#d9edff
+}
+.phase{margin-top:8px;padding:11px;border-radius:16px;background:#103e7a;text-align:center;font-size:17px;font-weight:900}
+.main{height:100%;display:grid;grid-template-rows:1fr 58px;min-width:0}
+.stage{position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;overflow:auto;padding:22px 26px 28px}
+.screen.active{display:block}
+.screen.s-home{background:linear-gradient(135deg,#f0f8ff 0%,#fff8eb 48%,#f6efff 100%)}
+.screen.s-loop{background:linear-gradient(135deg,#ecfff4,#f9fff1)}
+.screen.s-if{background:linear-gradient(135deg,#fff9e6,#fff2ea)}
+.screen.s-op{background:linear-gradient(135deg,#f7f0ff,#eef7ff)}
+.screen.s-challenge{background:linear-gradient(135deg,#fff2f5,#fff9eb)}
+.screen.s-build{background:linear-gradient(135deg,#eef8ff,#edfdfb)}
+.screen.s-quiz{background:linear-gradient(135deg,#fff0f7,#f7f0ff)}
+.screen.s-reflect{background:linear-gradient(135deg,#f4f1ff,#eefcff)}
+.content{max-width:1360px;margin:auto}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}
+.kicker{font-size:14px;font-weight:900;color:#55708c;text-transform:uppercase;letter-spacing:.08em}
+h1,h2,h3,p{margin-top:0}
+h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spacing:-1.2px}
+.subtitle{font-size:clamp(16px,1.55vw,22px);line-height:1.5;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid var(--border);padding:8px 13px;font-weight:900;box-shadow:0 6px 16px rgba(32,78,120,.08)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:rgba(255,255,255,.93);border:1px solid rgba(206,225,241,.95);border-radius:24px;padding:20px;
+  box-shadow:var(--shadow)
+}
+.card h3{font-size:clamp(21px,2vw,29px);margin-bottom:9px}
+.card p,.card li{font-size:clamp(15px,1.35vw,20px);line-height:1.55}
+.hero{min-height:100%;display:grid;grid-template-columns:1.02fr .98fr;gap:22px;align-items:center;max-width:1360px;margin:auto}
+.hero-copy{padding:28px 10px 28px 20px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #dfeaf5;padding:9px 13px;border-radius:999px;font-weight:900;color:#39516a;box-shadow:0 8px 20px rgba(34,73,111,.08)}
+.hero h1{font-size:clamp(48px,6.8vw,94px);line-height:.93;margin:18px 0 14px;letter-spacing:-3px;color:#502bbb}
+.hero h1 .a{color:#0ca8af}.hero h1 .b{color:#fa7b19}.hero h1 .c{color:#39b762}
+.hero-lead{font-size:clamp(18px,1.8vw,25px);line-height:1.55;color:#52677d;max-width:760px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;border-radius:16px;padding:13px 18px;min-height:48px;color:#fff;font-weight:950;box-shadow:0 10px 20px rgba(38,89,132,.16)}
+.btn.blue{background:linear-gradient(135deg,#128af0,#25c1e6)} .btn.green{background:linear-gradient(135deg,#2fb66e,#6bd553)}
+.btn.orange{background:linear-gradient(135deg,#ff8528,#ffb026)} .btn.purple{background:linear-gradient(135deg,#8259de,#aa70f1)}
+.btn.gray{background:#eff5fa;color:#36536d;border:1px solid #d7e5f1;box-shadow:none}
+.hero-art{
+  position:relative;min-height:550px;border-radius:32px;overflow:hidden;background:#fff;border:1px solid #d9e8f5;
+  box-shadow:0 24px 60px rgba(54,76,117,.22)
+}
+.hero-art img{width:100%;height:100%;min-height:550px;object-fit:cover;display:block}
+.hero-overlay{
+  position:absolute;left:20px;right:20px;bottom:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.8)
+}
+.hero-overlay strong{font-size:18px}.hero-overlay div:last-child{font-size:13px;color:#5d7082;line-height:1.45}
+.cat-bubble{width:80px;height:80px;flex:0 0 80px}
+.block{
+  display:block;width:max-content;max-width:100%;padding:12px 16px;border-radius:12px;color:#fff;font-weight:950;margin:8px 0;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.12);font-size:clamp(15px,1.35vw,20px)
+}
+.event{background:#f0ba27;color:#1c2530}.control{background:var(--control)}.motion{background:var(--motion)}
+.looks{background:var(--looks)}.sense{background:var(--sense)}.operator{background:var(--operator)}
+.indent{margin-left:28px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.compare-card{border-radius:20px;padding:17px;border:2px solid #dde9ef;background:#fff}
+.compare-card.if{border-color:#8fd880;background:#f7fff3}.compare-card.ifelse{border-color:#ffc267;background:#fffaf0}
+.compare-title{font-size:22px;font-weight:1000;margin-bottom:7px}.green-text{color:#239653}.orange-text{color:#e36f14}
+.tip{border-radius:17px;padding:13px 15px;background:#fff5c7;border:1px solid #f3d55e;font-size:16px;line-height:1.45}
+.warning{border-radius:17px;padding:13px 15px;background:#e8f8ff;border:1px solid #8fd5f3;font-size:16px;line-height:1.45}
+.sim{background:#f7fbff;border:1px solid #d6e7f4;border-radius:20px;padding:16px}
+.track{position:relative;height:105px;border-radius:18px;background:linear-gradient(90deg,#d9f4ff,#f7f4ff);overflow:hidden;border:2px dashed #90bdd8;margin:13px 0}
+.cat-sprite{position:absolute;left:14px;top:12px;width:78px;height:78px;transition:left .23s ease,transform .25s ease;filter:drop-shadow(0 6px 5px rgba(61,64,88,.18))}
+.sim-controls{display:flex;gap:9px;flex-wrap:wrap}
+.feedback{min-height:52px;margin-top:11px;padding:12px 14px;border-radius:15px;background:#eef6fc;border-left:6px solid #82a9c7;font-size:16px;line-height:1.45}
+.feedback.good{background:#ecfff3;border-left-color:#2eb96a}.feedback.bad{background:#fff1f1;border-left-color:#f1535e}
+.question{font-size:clamp(20px,2vw,29px);font-weight:1000;margin:12px 0}
+.operator-show{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.op-card{border-radius:22px;background:#fff;border:1px solid #ded9f7;padding:20px;text-align:center}
+.op-symbol{font-size:65px;line-height:1;font-weight:1000;color:#47ae50}
+.op-card:nth-child(2) .op-symbol{color:#7a5ede}
+.input{width:100%;padding:15px 16px;border-radius:15px;border:2px solid #d3e3ef;background:#fff;font-size:23px;color:#20384e}
+.task-banner{display:grid;grid-template-columns:90px 1fr;gap:15px;align-items:center;background:linear-gradient(135deg,#ff7744,#ffae3e);color:#fff;border-radius:24px;padding:17px 20px;box-shadow:var(--shadow)}
+.task-banner .cat-bubble{width:76px;height:76px}
+.task-banner h3{font-size:28px;margin:0 0 5px}.task-banner p{margin:0;color:#fff;font-size:16px}
+.steps{counter-reset:steps;display:grid;gap:10px;margin-top:14px}
+.step{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid #e5eaf0;border-radius:17px;padding:12px}
+.step::before{counter-increment:steps;content:counter(steps);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ff8240;color:#fff;font-weight:1000}
+.step strong{display:block;font-size:17px;margin-bottom:3px}.step span{font-size:15px;line-height:1.45;color:#637386}
+.check-list{display:grid;gap:9px;margin-top:10px}
+.check{display:flex;gap:10px;align-items:flex-start;background:#fff8ec;border:1px solid #ffda9d;border-radius:15px;padding:11px 12px;font-size:15px;line-height:1.4}
+.check .mark{width:25px;height:25px;border-radius:50%;background:#37bd73;color:#fff;display:grid;place-items:center;font-weight:1000;flex:0 0 25px}
+.builder{display:grid;grid-template-columns:.95fr 1.05fr;gap:16px}
+.bank,.workspace{min-height:330px;background:#fff;border:2px dashed #b7d5e8;border-radius:22px;padding:15px}
+.tapblock{display:block;width:100%;text-align:left;border:0;padding:12px 14px;border-radius:11px;margin:8px 0;color:#fff;font-weight:950}
+.tapblock.event{color:#20272f}
+.empty{color:#8295a7;text-align:center;padding:68px 12px}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer{background:#fff;border:2px solid #dce7f0;border-radius:16px;padding:15px;text-align:left;color:#294156;font-weight:850;font-size:16px}
+.answer:hover{border-color:#8dc9ec}.answer.correct{background:#e8fff0;border-color:#43bf75}.answer.wrong{background:#fff0f0;border-color:#f26c76}
+.progress{height:11px;background:#e8edf3;border-radius:999px;overflow:hidden;margin-top:11px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#ef5ca6,#9668ed,#27b9cc)}
+.score{font-size:66px;text-align:center;font-weight:1000;color:#7955d5}
+.reflection-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.reflect-btn{
+  min-height:108px;border-radius:20px;border:2px solid #e1dcf6;background:linear-gradient(135deg,#fff,#f8f4ff);
+  color:#3c3564;text-align:left;font-weight:900;font-size:16px;padding:16px;box-shadow:0 8px 20px rgba(76,64,131,.08)
+}
+.reflect-btn:hover{border-color:#9b7ae4;transform:translateY(-1px)}
+.footerbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 14px;background:#fff;border-top:1px solid #d9e8f5}
+.footer-left{font-size:12px;color:#64788a}.footer-nav{display:flex;align-items:center;gap:8px}.page{font-weight:900;color:#50667a;min-width:58px;text-align:center}
+.mini{font-size:12px;color:#6f8295}
+@media(max-width:1050px){
+  .app{grid-template-columns:195px 1fr}.sidebar{padding:14px 9px}.brand-title{font-size:25px}.nav-btn{font-size:13px;padding:8px}
+  .hero{grid-template-columns:1fr}.hero-art{min-height:390px}.hero-art img{min-height:390px}
+  .grid3{grid-template-columns:1fr}.compare,.grid2,.builder{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  html,body{overflow:auto}.app{height:auto;min-height:100%;display:block}.sidebar{position:sticky;top:0;height:auto;display:block;padding:10px;z-index:30}
+  .brand,.sidebar-note,.phase{display:none}.nav-list{display:flex;overflow-x:auto;gap:7px}.nav-btn{min-width:145px;min-height:44px;flex:0 0 auto}
+  .main{height:calc(100vh - 64px)}.screen{padding:14px}.hero-copy{padding:10px}.hero h1{font-size:51px}.reflection-grid,.answer-grid,.operator-show{grid-template-columns:1fr}
+}
 </style>
 </head>
-<body><div class="app">
-<header><div class="brand"><div class="logo">KA</div><div><h1>KODE AKTIF — Bahan Ajar Interaktif</h1><p>Kelas VIII Fase D • Perulangan, Percabangan, dan Operator • Siap PID</p></div></div><div class="actions"><button class="btn ghost" onclick="go(0)">Beranda</button><button class="btn ghost" onclick="resetAll()">Reset</button><button class="btn primary" onclick="full()">Layar Penuh</button></div></header>
-<main>
-<section class="screen active"><div class="hero"><div class="hero-card"><span class="eyebrow">Koding dan Kecerdasan Artifisial • Fase D</span><h2>Belajar Kode dengan <span>Menyentuh, Mencoba, dan Memperbaiki</span></h2><p>Materi sederhana untuk memahami <b>perulangan</b>, <b>percabangan</b>, dan <b>operator</b> melalui aktivitas visual yang cocok digunakan di Papan Interaktif Digital dan Chromebook.</p><div class="actions"><button class="btn primary" onclick="go(1)">Mulai Belajar</button><button class="btn good" onclick="go(6)">Langsung ke Kuis</button></div></div><div class="visual"><div><div class="block event">ketika bendera hijau diklik</div><div class="block control">selamanya</div><div class="block motion indent">gerak 10 langkah</div><div class="block control indent">jika menyentuh pinggir maka</div><div class="block motion indent">putar 15 derajat</div></div></div></div></section>
+<body>
+<div class="app">
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>1. Perulangan</h2><div class="subtitle">Perintah yang dijalankan berulang-ulang.</div></div><div><span class="chip">repeat</span><span class="chip">forever</span></div></div><div class="grid2"><div class="card"><h3>Bandingkan dua blok</h3><div class="block control">ulangi 10 kali</div><div class="block motion indent">gerak 5 langkah</div><p><b>repeat 10</b> menjalankan perintah tepat 10 kali.</p><div class="block control">selamanya</div><div class="block motion indent">gerak 5 langkah</div><p><b>forever</b> menjalankan perintah terus sampai program dihentikan.</p></div><div class="card"><h3>Coba di PID</h3><div class="sim"><div class="track"><div id="loopSprite" class="sprite">S</div></div><div class="sim-controls"><button class="btn primary" onclick="runRepeat()">Repeat 10</button><button class="btn good" onclick="runForever()">Forever</button><button class="btn warn" onclick="stopLoop()">Stop</button></div><div id="loopFb" class="feedback">Sentuh salah satu tombol lalu amati gerakan sprite.</div></div><div class="question">Apa perbedaan hasil Repeat 10 dan Forever?</div></div></div></div></section>
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-title"><span class="y">KODE</span><span class="c">-</span><span class="g">AKTIF</span></div>
+    <div class="brand-sub">Belajar coding itu seru: lihat, sentuh, coba, perbaiki.</div>
+  </div>
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>2. Percabangan</h2><div class="subtitle">Program mengambil keputusan berdasarkan kondisi.</div></div><div><span class="chip">if</span><span class="chip">if–else</span></div></div><div class="grid2"><div class="card"><h3>Contoh sederhana</h3><div class="block event">ketika bendera hijau diklik</div><div class="block control">selamanya</div><div class="block motion indent">gerak 10 langkah</div><div class="block control indent">jika menyentuh pinggir maka</div><div class="block motion indent">putar 15 derajat</div><p><b>Jika</b> kondisi benar, perintah di dalam blok dijalankan.</p></div><div class="card"><h3>Prediksi dulu!</h3><div class="sim"><div class="track"><div id="ifSprite" class="sprite">S</div></div><div class="sim-controls"><button class="btn primary" onclick="runIf()">Jalankan</button><button class="btn ghost" onclick="resetIf()">Ulangi</button></div><div id="ifFb" class="feedback">Apa yang terjadi saat sprite menyentuh pinggir?</div></div><div class="question">Mengapa blok “jika menyentuh pinggir” disebut percabangan?</div></div></div></div></section>
+  <nav class="nav-list">
+    <button class="nav-btn n1 active" onclick="go(0)"><span class="icon">⌂</span>1. Beranda</button>
+    <button class="nav-btn n2" onclick="go(1)"><span class="icon">↻</span>2. Perulangan</button>
+    <button class="nav-btn n3" onclick="go(2)"><span class="icon">⑂</span>3. Percabangan</button>
+    <button class="nav-btn n4" onclick="go(3)"><span class="icon">＋</span>4. Operator</button>
+    <button class="nav-btn n5" onclick="go(4)"><span class="icon">👥</span>5. Tantangan</button>
+    <button class="nav-btn n7" onclick="go(5)"><span class="icon">🧩</span>6. Susun Kode</button>
+    <button class="nav-btn n6" onclick="go(6)"><span class="icon">?</span>7. Kuis</button>
+    <button class="nav-btn n8" onclick="go(7)"><span class="icon">✦</span>8. Refleksi</button>
+  </nav>
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>3. Operator</h2><div class="subtitle">Digunakan untuk menghitung dan membandingkan nilai.</div></div><div><span class="chip">+</span><span class="chip">=</span></div></div><div class="grid2"><div class="card"><h3>Dua operator yang kita pakai</h3><p><b>+</b> untuk menjumlahkan. Contoh: 5 + 3 = 8.</p><p><b>=</b> untuk membandingkan dua nilai. Hasil perbandingan adalah benar atau salah.</p><div class="block sense">tanyakan “Berapa 5 + 3?” dan tunggu</div><div class="block control">jika jawaban = 8 maka</div><div class="block looks indent">katakan “Benar!”</div><div class="block control">jika tidak</div><div class="block looks indent">katakan “Coba lagi!”</div></div><div class="card"><h3>Coba jawab</h3><div class="question">Berapa hasil 5 + 3?</div><input id="math" inputmode="numeric" placeholder="Ketik jawaban..." style="width:100%;padding:16px;border-radius:14px;border:1px solid #3a6388;background:#0c1e30;color:#fff;font-size:24px"><div class="sim-controls" style="margin-top:12px"><button class="btn primary" onclick="checkMath()">Periksa dengan operator =</button><button class="btn ghost" onclick="math.value=''">Hapus</button></div><div id="mathFb" class="feedback">Program akan membandingkan jawabanmu dengan angka 8.</div></div></div></div></section>
+  <div class="sidebar-note">
+    <strong>KODE-AKTIF</strong><br>
+    Bahan ajar web interaktif untuk memahami logika pemrograman visual secara sederhana dan menyenangkan.
+    <div class="phase">Fase D</div>
+  </div>
+</aside>
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>4. Tantangan Kelompok: Sprite Cerdas</h2><div class="subtitle">Satu Chromebook untuk 3–4 murid. Bergantian menjadi operator, pembaca langkah, pemeriksa kode, dan penyaji.</div></div></div><div class="grid2"><div class="card"><h3>Target proyek</h3><div class="step-list"><div class="step"><div><b>Tanyakan soal sederhana</b><br><span class="subtitle">Contoh: “Berapa 5 + 3?”</span></div></div><div class="step"><div><b>Periksa jawaban</b><br><span class="subtitle">Gunakan operator = dan if–else.</span></div></div><div class="step"><div><b>Buat sprite bergerak</b><br><span class="subtitle">Gunakan forever dan gerak 10 langkah.</span></div></div><div class="step"><div><b>Tambahkan kondisi pinggir</b><br><span class="subtitle">Jika menyentuh pinggir, sprite berputar.</span></div></div><div class="step"><div><b>Uji dan perbaiki</b><br><span class="subtitle">Cari kesalahan lalu perbaiki.</span></div></div></div></div><div class="card"><h3>Kriteria berhasil</h3><ul><li>ada <b>perulangan</b>;</li><li>ada <b>percabangan</b>;</li><li>ada <b>operator</b>;</li><li>program dapat dijalankan;</li><li>kelompok mampu menjelaskan fungsi minimal tiga blok.</li></ul><div class="feedback good"><b>Program tidak harus rumit.</b>&nbsp;Yang penting kalian memahami logika blok yang digunakan.</div></div></div></div></section>
+<div class="main">
+<main class="stage">
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>5. Susun Kode</h2><div class="subtitle">Sentuh blok di sebelah kiri untuk menyusunnya ke area kerja.</div></div></div><div class="builder"><div class="bank"><h3>Bank Blok</h3><button class="tapblock event" data-id="event" onclick="addBlock(this)">ketika bendera hijau diklik</button><button class="tapblock control" data-id="forever" onclick="addBlock(this)">selamanya</button><button class="tapblock motion" data-id="move" onclick="addBlock(this)">gerak 10 langkah</button><button class="tapblock control" data-id="ifedge" onclick="addBlock(this)">jika menyentuh pinggir maka</button><button class="tapblock motion" data-id="turn" onclick="addBlock(this)">putar 15 derajat</button></div><div class="workspace"><h3>Area Kerja</h3><div id="work"><div class="empty">Belum ada blok. Sentuh blok dari Bank Blok.</div></div><div class="sim-controls" style="margin-top:10px"><button class="btn good" onclick="checkBuild()">Periksa Susunan</button><button class="btn warn" onclick="undoBlock()">Batalkan</button><button class="btn ghost" onclick="clearBuild()">Kosongkan</button></div><div id="buildFb" class="feedback">Susun program agar sprite bergerak terus dan berputar saat menyentuh pinggir.</div></div></div></div></section>
+<section class="screen s-home active">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="badge">💡 Koding dan Kecerdasan Artifisial • Fase D</span>
+      <h1><span class="a">KODE</span><span class="b">-</span><span class="c">AKTIF</span></h1>
+      <p class="hero-lead">Hari ini kita belajar tiga ide penting dalam pemrograman visual: <b>perulangan</b>, <b>percabangan</b>, dan <b>operator</b>. Tidak perlu menghafal. Kita akan melihat hasilnya, menyentuh pilihan, mencoba kode, lalu memperbaiki jika masih salah.</p>
+      <div class="grid3" style="margin-top:18px">
+        <div class="card"><h3 style="color:#269456">↻ Perulangan</h3><p>Mengulangi perintah beberapa kali atau terus-menerus.</p></div>
+        <div class="card"><h3 style="color:#e57b16">⑂ Percabangan</h3><p>Membuat program memilih tindakan berdasarkan kondisi.</p></div>
+        <div class="card"><h3 style="color:#7557c9">＋ Operator</h3><p>Menghitung atau membandingkan nilai.</p></div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn blue" onclick="go(1)">Mulai dari Perulangan →</button>
+        <button class="btn purple" onclick="go(6)">Coba Kuis</button>
+        <button class="btn gray" onclick="toggleFull()">⛶ Layar Penuh</button>
+      </div>
+    </div>
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>6. Kuis Cepat</h2><div class="subtitle">Pilih jawaban dengan menyentuh layar.</div></div><div class="chip"><span id="qpos">1</span>/5</div></div><div class="card" style="max-width:1000px;margin:auto"><div id="qtext" class="question"></div><div id="qanswers" class="answer-grid"></div><div id="qfb" class="feedback">Pilih satu jawaban.</div><div class="progress"><div id="qprog"></div></div><div class="sim-controls" style="margin-top:12px"><button id="qnext" class="btn primary hidden" onclick="nextQ()">Soal Berikutnya</button><button class="btn ghost" onclick="restartQ()">Ulangi Kuis</button></div></div></div></section>
+    <div class="hero-art">
+      <img src="assets/hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
+      <div class="hero-overlay">
+        <div class="cat-bubble" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+              <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+              <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+              <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+              <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+              <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+              <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+            </g>
+          </svg>
+        </div>
+        <div><strong>Ayo belajar dengan mencoba!</strong><br>Catatan: jika program salah, itu bukan gagal. Itu kesempatan untuk melakukan debugging.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="screen"><div class="content"><div class="title-row"><div><h2>7. Refleksi</h2><div class="subtitle">Pilih pernyataan yang paling sesuai setelah belajar.</div></div></div><div class="reflection"><button class="reflect-btn" onclick="reflect('Saya sudah memahami perulangan.')">Saya sudah memahami <b>perulangan</b>.</button><button class="reflect-btn" onclick="reflect('Saya sudah memahami percabangan.')">Saya sudah memahami <b>percabangan</b>.</button><button class="reflect-btn" onclick="reflect('Saya bisa menjelaskan fungsi operator =.')">Saya bisa menjelaskan fungsi <b>operator =</b>.</button></div><div class="card" style="margin-top:16px"><div id="rfb" class="feedback">Sentuh salah satu pernyataan. Guru dapat meminta beberapa murid menjelaskan alasannya.</div><div class="score">KODE AKTIF ✓</div><p style="text-align:center">Sederhana • Aktif • Kolaboratif • Siap digunakan di PID dan Chromebook</p></div></div></section>
+<section class="screen s-loop">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 1</div><h2>Perulangan (Loop)</h2><div class="subtitle">Perintah yang dilakukan berulang-ulang.</div></div>
+      <span class="pill">↻ repeat & forever</span>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Bandingkan dua jenis perulangan</h3>
+        <div class="block control">ulangi 10 kali</div>
+        <div class="block motion indent">gerak 5 langkah</div>
+        <p><b>Repeat 10</b>: perintah di dalamnya dijalankan tepat 10 kali, kemudian berhenti.</p>
+
+        <div class="block control">selamanya</div>
+        <div class="block motion indent">gerak 5 langkah</div>
+        <p><b>Forever</b>: perintah di dalamnya terus dijalankan sampai program dihentikan.</p>
+
+        <div class="warning"><b>Jangan tertukar:</b> perulangan dipakai untuk <b>mengulang</b>. Blok <b>jika...maka</b> bukan perulangan; blok itu termasuk <b>percabangan</b> karena memeriksa kondisi.</div>
+      </div>
+
+      <div class="card">
+        <h3>Coba langsung</h3>
+        <div class="sim">
+          <div class="track">
+            <div id="loopCat" class="cat-sprite">
+              <svg viewBox="0 0 120 120">
+                <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+                  <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+                  <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+                  <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+                  <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+                  <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+                  <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="sim-controls">
+            <button class="btn blue" onclick="runRepeat()">▶ Repeat 10</button>
+            <button class="btn green" onclick="runForever()">▶ Forever</button>
+            <button class="btn orange" onclick="stopLoop()">■ Stop</button>
+          </div>
+          <div id="loopFb" class="feedback">Sentuh Repeat 10 dan Forever secara bergantian. Amati: kapan kucing berhenti?</div>
+        </div>
+        <div class="question">Diskusikan: kapan kita memilih Repeat, dan kapan kita memilih Forever?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-if">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 2</div><h2>Percabangan: “Jika–Maka” dan “Jika–Maka–Jika Tidak”</h2><div class="subtitle">Percabangan membuat program memilih tindakan berdasarkan sebuah kondisi.</div></div>
+      <span class="pill">⑂ if & if–else</span>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card if">
+        <div class="compare-title green-text">A. Jika ... Maka (IF)</div>
+        <p>Program <b>memeriksa satu kondisi</b>. Jika kondisi benar, aksi dijalankan. Jika kondisi salah, tidak ada aksi alternatif.</p>
+        <div class="block control">jika &lt;menyentuh pinggir?&gt; maka</div>
+        <div class="block motion indent">putar 15 derajat</div>
+        <div class="tip"><b>Contoh:</b> Jika kucing menyentuh pinggir, maka kucing berputar. Jika belum menyentuh pinggir, tidak ada perintah tambahan.</div>
+      </div>
+
+      <div class="compare-card ifelse">
+        <div class="compare-title orange-text">B. Jika ... Maka ... Jika Tidak (IF–ELSE)</div>
+        <p>Program memilih <b>dua kemungkinan</b>: aksi untuk kondisi benar dan aksi lain untuk kondisi salah.</p>
+        <div class="block control">jika &lt;jawaban = 8&gt; maka</div>
+        <div class="block looks indent">katakan “Benar!”</div>
+        <div class="block control indent">jika tidak</div>
+        <div class="block looks indent">katakan “Coba lagi!”</div>
+        <div class="tip"><b>Ingat:</b> IF punya satu jalan tindakan. IF–ELSE menyediakan dua jalan tindakan.</div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Prediksi perilaku kucing</h3>
+        <div class="sim">
+          <div class="track">
+            <div id="ifCat" class="cat-sprite">
+              <svg viewBox="0 0 120 120">
+                <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+                  <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+                  <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+                  <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+                  <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+                  <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+                  <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="sim-controls">
+            <button class="btn orange" onclick="runIfDemo()">Jalankan IF</button>
+            <button class="btn gray" onclick="resetIfDemo()">Ulangi</button>
+          </div>
+          <div id="ifFb" class="feedback">Apa yang akan dilakukan kucing ketika menyentuh pinggir?</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Cek pemahaman cepat</h3>
+        <p><b>Situasi:</b> Jika nilai ≥ 75, tampilkan “Tuntas”. Jika tidak, tampilkan “Belajar lagi”.</p>
+        <div class="question">Blok mana yang paling tepat?</div>
+        <div class="sim-controls">
+          <button class="btn gray" onclick="branchCheck(false)">Jika–Maka saja</button>
+          <button class="btn green" onclick="branchCheck(true)">Jika–Maka–Jika Tidak</button>
+        </div>
+        <div id="branchFb" class="feedback">Pilih jawaban, lalu jelaskan alasanmu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-op">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 3</div><h2>Operator</h2><div class="subtitle">Hari ini fokus pada dua operator sederhana: penjumlahan (+) dan pembanding (=).</div></div>
+      <span class="pill">＋ dan =</span>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="operator-show">
+          <div class="op-card"><div class="op-symbol">+</div><h3>Penjumlahan</h3><p>Menghitung dua nilai. Contoh: 5 + 3 menghasilkan 8.</p></div>
+          <div class="op-card"><div class="op-symbol">=</div><h3>Pembanding</h3><p>Memeriksa apakah dua nilai sama. Hasilnya benar atau salah.</p></div>
+        </div>
+
+        <div style="margin-top:15px">
+          <div class="block sense">tanyakan “Berapa hasil 5 + 3?” dan tunggu</div>
+          <div class="block control">jika &lt;jawaban = (5 + 3)&gt; maka</div>
+          <div class="block looks indent">katakan “Benar!”</div>
+          <div class="block control">jika tidak</div>
+          <div class="block looks indent">katakan “Coba lagi!”</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Coba operator secara langsung</h3>
+        <div class="question">Berapa hasil 5 + 3?</div>
+        <input id="mathInput" class="input" inputmode="numeric" placeholder="Ketik jawaban ...">
+        <div class="sim-controls" style="margin-top:11px">
+          <button class="btn purple" onclick="checkMath()">Periksa dengan =</button>
+          <button class="btn gray" onclick="document.getElementById('mathInput').value=''">Hapus</button>
+        </div>
+        <div id="mathFb" class="feedback">Program akan menghitung 5 + 3, kemudian membandingkan jawabanmu dengan hasil tersebut.</div>
+        <div class="tip" style="margin-top:12px"><b>Pikirkan:</b> operator + melakukan perhitungan. Operator = melakukan perbandingan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-challenge">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Mini Proyek Kelompok</div><h2>Tantangan: “Kucing Cerdas”</h2><div class="subtitle">Ikuti urutan persis di bawah. Jangan menambah fitur sebelum program dasar berhasil.</div></div>
+      <span class="pill">👥 3–4 murid / Chromebook</span>
+    </div>
+
+    <div class="task-banner">
+      <div class="cat-bubble">
+        <svg viewBox="0 0 120 120">
+          <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+            <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+            <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+            <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+            <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+            <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+            <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+          </g>
+        </svg>
+      </div>
+      <div><h3>Target akhir sangat jelas</h3><p>Kucing bertanya soal 5 + 3, memberi respons benar/salah, kemudian bergerak terus dan bereaksi ketika menyentuh pinggir.</p></div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Langkah kerja — ikuti satu per satu</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Buka Scratch dan gunakan sprite kucing.</strong><span>Jangan mengganti sprite dulu agar semua kelompok bekerja dengan target yang sama.</span></div></div>
+          <div class="step"><div><strong>Pasang blok “ketika bendera hijau diklik”.</strong><span>Semua perintah dimulai dari blok ini.</span></div></div>
+          <div class="step"><div><strong>Buat kucing bertanya: “Berapa hasil 5 + 3?”</strong><span>Gunakan blok <i>ask ... and wait</i>.</span></div></div>
+          <div class="step"><div><strong>Periksa jawaban dengan IF–ELSE.</strong><span>Gunakan kondisi <b>jawaban = (5 + 3)</b>. Jika benar, katakan “Benar!”. Jika tidak, katakan “Coba lagi!”.</span></div></div>
+          <div class="step"><div><strong>Setelah memberi respons, buat kucing bergerak terus.</strong><span>Tambahkan <b>forever</b> lalu <b>move 10 steps</b>.</span></div></div>
+          <div class="step"><div><strong>Di dalam forever, tambahkan kondisi pinggir.</strong><span>Jika menyentuh pinggir, gunakan <b>if on edge, bounce</b> atau perintah berbalik yang tersedia.</span></div></div>
+          <div class="step"><div><strong>Tekan bendera hijau dan uji dua kali.</strong><span>Uji sekali dengan jawaban benar dan sekali dengan jawaban salah.</span></div></div>
+          <div class="step"><div><strong>Jika belum berhasil, debugging.</strong><span>Periksa urutan blok. Ubah satu bagian saja, lalu uji kembali.</span></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Program kalian harus memenuhi 6 cek ini</h3>
+        <div class="check-list">
+          <div class="check"><span class="mark">✓</span><span>Kucing menanyakan <b>5 + 3</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kondisi menggunakan <b>operator +</b> dan <b>operator =</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Jawaban benar menghasilkan pesan <b>“Benar!”</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Jawaban salah menghasilkan pesan <b>“Coba lagi!”</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kucing bergerak terus menggunakan <b>forever</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kucing bereaksi saat menyentuh pinggir.</span></div>
+        </div>
+
+        <div class="tip" style="margin-top:14px"><b>Pembagian peran:</b> operator menyusun blok, pembaca langkah membaca instruksi, pemeriksa kode mengecek urutan, dan penyaji menjelaskan hasil. Setelah ±8 menit, ganti operator.</div>
+        <div class="warning" style="margin-top:11px"><b>Jika sudah berhasil lebih cepat:</b> baru boleh mengganti angka 5 + 3 menjadi soal lain. Jangan menambah skor/level sebelum program inti benar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-build">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Latihan PID</div><h2>Susun Kode Gerak Kucing</h2><div class="subtitle">Sentuh blok sesuai urutan agar kucing bergerak terus dan bereaksi saat menyentuh pinggir.</div></div>
+      <span class="pill">🧩 drag tidak perlu — cukup sentuh</span>
+    </div>
+
+    <div class="builder">
+      <div class="bank">
+        <h3>Bank Blok</h3>
+        <button class="tapblock event" data-id="event" onclick="addBlock(this)">ketika bendera hijau diklik</button>
+        <button class="tapblock control" data-id="forever" onclick="addBlock(this)">selamanya</button>
+        <button class="tapblock motion" data-id="move" onclick="addBlock(this)">gerak 10 langkah</button>
+        <button class="tapblock control" data-id="ifedge" onclick="addBlock(this)">jika menyentuh pinggir maka</button>
+        <button class="tapblock motion" data-id="bounce" onclick="addBlock(this)">berbalik / bounce</button>
+        <div class="tip" style="margin-top:12px"><b>Petunjuk:</b> mulai dari event → ulangi terus → gerak → cek pinggir → bereaksi.</div>
+      </div>
+
+      <div class="workspace">
+        <h3>Area Kerja</h3>
+        <div id="workspace"><div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div></div>
+        <div class="sim-controls" style="margin-top:11px">
+          <button class="btn green" onclick="checkBuild()">Periksa Susunan</button>
+          <button class="btn orange" onclick="undoBlock()">Batalkan Terakhir</button>
+          <button class="btn gray" onclick="clearBuild()">Kosongkan</button>
+        </div>
+        <div id="buildFb" class="feedback">Susun 5 blok. Jika salah, gunakan petunjuk lalu coba lagi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-quiz">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Asesmen Interaktif</div><h2>Kuis Cepat</h2><div class="subtitle">Ada 10 pertanyaan. Pilih satu jawaban terbaik dan baca umpan baliknya.</div></div>
+      <span class="pill"><span id="quizPos">1</span>/10</span>
+    </div>
+
+    <div class="card" style="max-width:1050px;margin:auto">
+      <div id="quizQuestion" class="question"></div>
+      <div id="quizAnswers" class="answer-grid"></div>
+      <div id="quizFb" class="feedback">Pilih satu jawaban.</div>
+      <div class="progress"><div id="quizProgress"></div></div>
+      <div class="sim-controls" style="margin-top:12px">
+        <button id="quizNext" class="btn purple" onclick="nextQuestion()" style="display:none">Soal Berikutnya →</button>
+        <button class="btn gray" onclick="restartQuiz()">Ulangi Kuis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-reflect">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Penutup</div><h2>Refleksi Pembelajaran</h2><div class="subtitle">Pilih satu pertanyaan, jawab dengan kalimatmu sendiri, lalu dengarkan jawaban teman.</div></div>
+      <span class="pill">✦ 8 pertanyaan refleksi</span>
+    </div>
+
+    <div class="reflection-grid">
+      <button class="reflect-btn" onclick="showReflection(0)">1. Apa perbedaan <b>Repeat</b> dan <b>Forever</b>? Beri satu contoh.</button>
+      <button class="reflect-btn" onclick="showReflection(1)">2. Apa perbedaan <b>Jika–Maka</b> dan <b>Jika–Maka–Jika Tidak</b>?</button>
+      <button class="reflect-btn" onclick="showReflection(2)">3. Apa fungsi operator <b>+</b> dan operator <b>=</b>?</button>
+      <button class="reflect-btn" onclick="showReflection(3)">4. Bagian kode apa yang paling mudah kamu pahami? Mengapa?</button>
+      <button class="reflect-btn" onclick="showReflection(4)">5. Kesalahan apa yang ditemukan kelompokmu saat debugging?</button>
+      <button class="reflect-btn" onclick="showReflection(5)">6. Bagaimana kelompokmu memperbaiki program yang belum berhasil?</button>
+      <button class="reflect-btn" onclick="showReflection(6)">7. Bagaimana pembagian peran membantu kelompokmu bekerja?</button>
+      <button class="reflect-btn" onclick="showReflection(7)">8. Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi?</button>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Pertanyaan yang dipilih</h3>
+      <div id="reflectionFb" class="feedback">Sentuh salah satu kartu pertanyaan di atas.</div>
+      <div class="grid3" style="margin-top:14px">
+        <button class="btn green" onclick="confidence('Sudah paham dan bisa menjelaskan.')">🙂 Sudah paham</button>
+        <button class="btn orange" onclick="confidence('Mulai paham tetapi masih perlu latihan.')">😐 Perlu latihan</button>
+        <button class="btn purple" onclick="confidence('Saya ingin bertanya lagi sebelum lanjut.')">🙋 Ingin bertanya</button>
+      </div>
+      <div id="confidenceFb" class="feedback">Pilih juga tingkat pemahamanmu.</div>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer><div class="tiny">UPTD SMP Negeri 2 Topoyo • Dewi Lestari, S.Pd., Gr. • KKA Kelas VIII</div><div class="nav"><button class="btn ghost" onclick="prev()">← Sebelumnya</button><span class="page-indicator"><span id="pnow">1</span>/<span id="ptotal">8</span></span><button class="btn primary" onclick="next()">Berikutnya →</button></div></footer>
+
+<footer class="footerbar">
+  <div class="footer-left">KODE-AKTIF • Koding dan Kecerdasan Artifisial • Fase D</div>
+  <div class="footer-nav">
+    <button class="btn gray" onclick="prev()">← Sebelumnya</button>
+    <span class="page"><span id="pageNow">1</span>/8</span>
+    <button class="btn blue" onclick="next()">Berikutnya →</button>
+    <button class="btn gray" onclick="toggleFull()">⛶</button>
+  </div>
+</footer>
 </div>
+</div>
+
 <script>
-const S=[...document.querySelectorAll('.screen')];let cur=0,timer=null,built=[];ptotal.textContent=S.length;
-function go(i){cur=Math.max(0,Math.min(S.length-1,i));S.forEach((s,j)=>s.classList.toggle('active',j===cur));pnow.textContent=cur+1}function next(){go(cur+1)}function prev(){go(cur-1)}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});function full(){document.fullscreenElement?document.exitFullscreen?.():document.documentElement.requestFullscreen?.()}
-function resetAll(){stopLoop();resetIf();clearBuild();restartQ();math.value='';mathFb.className='feedback';mathFb.textContent='Program akan membandingkan jawabanmu dengan angka 8.';rfb.textContent='Sentuh salah satu pernyataan. Guru dapat meminta beberapa murid menjelaskan alasannya.';go(0)}
-function runRepeat(){stopLoop();let s=loopSprite,n=0,x=16;loopFb.className='feedback';loopFb.textContent='Repeat 10: sprite bergerak tepat 10 kali.';s.style.left='16px';timer=setInterval(()=>{n++;x+=22;s.style.left=Math.min(x,s.parentElement.clientWidth-66)+'px';if(n>=10){clearInterval(timer);timer=null;loopFb.className='feedback good';loopFb.textContent='Selesai: perintah dijalankan 10 kali.'}},220)}
-function runForever(){stopLoop();let s=loopSprite,x=16,d=1;s.style.left='16px';loopFb.className='feedback';loopFb.textContent='Forever: sprite terus bergerak sampai Stop disentuh.';timer=setInterval(()=>{let m=s.parentElement.clientWidth-66;x+=16*d;if(x>=m){x=m;d=-1}if(x<=16){x=16;d=1}s.style.left=x+'px'},160)}function stopLoop(){if(timer){clearInterval(timer);timer=null}}
-function resetIf(){ifSprite.style.left='16px';ifSprite.style.transform='rotate(0deg)';ifFb.className='feedback';ifFb.textContent='Apa yang terjadi saat sprite menyentuh pinggir?'}function runIf(){resetIf();let x=16;let t=setInterval(()=>{x+=24;ifSprite.style.left=Math.min(x,ifSprite.parentElement.clientWidth-66)+'px';if(x>=ifSprite.parentElement.clientWidth-66){clearInterval(t);ifSprite.style.transform='rotate(150deg)';ifFb.className='feedback good';ifFb.textContent='Kondisi BENAR → perintah “putar” dijalankan.'}},170)}
-function checkMath(){if(math.value.trim()==='8'){mathFb.className='feedback good';mathFb.textContent='Benar! Jawaban sama dengan 8.'}else{mathFb.className='feedback bad';mathFb.textContent='Belum tepat. Jawaban belum sama dengan 8.'}}
-function addBlock(b){built.push({id:b.dataset.id,text:b.textContent,cls:[...b.classList].find(c=>['event','control','motion'].includes(c))});renderBuild()}function renderBuild(){work.innerHTML=built.length?built.map((b,i)=>`<div class="block ${b.cls}" style="${i>=2?'margin-left:24px':''}">${b.text}</div>`).join(''):'<div class="empty">Belum ada blok. Sentuh blok dari Bank Blok.</div>'}function undoBlock(){built.pop();renderBuild()}function clearBuild(){built=[];renderBuild();if(buildFb){buildFb.className='feedback';buildFb.textContent='Susun program agar sprite bergerak terus dan berputar saat menyentuh pinggir.'}}function checkBuild(){let ok=JSON.stringify(built.map(x=>x.id))===JSON.stringify(['event','forever','move','ifedge','turn']);buildFb.className=ok?'feedback good':'feedback bad';buildFb.textContent=ok?'Susunan benar!':'Belum tepat. Urutan: event → perulangan → gerak → kondisi → aksi.'}
-const Q=[['Blok apa yang digunakan agar perintah berjalan terus-menerus?',['repeat 10','forever','if','='],1],['Apa fungsi percabangan (if)?',['Mengulang perintah','Mengambil keputusan berdasarkan kondisi','Menambah nilai','Menghentikan komputer'],1],['Operator “=” digunakan untuk …',['Membandingkan dua nilai','Memutar sprite','Mengulang 10 kali','Menghapus sprite'],0],['Jika sprite hanya berputar saat menyentuh pinggir, konsep yang digunakan adalah …',['Operator saja','Percabangan','Perulangan saja','Suara'],1],['Apa tindakan terbaik ketika program belum berjalan sesuai rencana?',['Menyerah','Menghapus semua kode','Menguji dan memperbaiki blok yang salah','Menyalin tanpa memahami'],2]];let qi=0,score=0,lock=false;
-function renderQ(){let q=Q[qi];qpos.textContent=qi+1;qtext.textContent=q[0];qanswers.innerHTML=q[1].map((x,i)=>`<button class="answer" onclick="chooseQ(${i},this)">${String.fromCharCode(65+i)}. ${x}</button>`).join('');qfb.className='feedback';qfb.textContent='Pilih satu jawaban.';qnext.classList.add('hidden');qprog.style.width=(qi/Q.length*100)+'%';lock=false}function chooseQ(i,b){if(lock)return;lock=true;let q=Q[qi],bs=[...document.querySelectorAll('#qanswers .answer')];bs[q[2]].classList.add('correct');if(i===q[2]){score++;qfb.className='feedback good';qfb.textContent='Benar!'}else{b.classList.add('wrong');qfb.className='feedback bad';qfb.textContent='Belum tepat. Perhatikan jawaban hijau.'}qnext.classList.remove('hidden');qprog.style.width=((qi+1)/Q.length*100)+'%'}function nextQ(){if(qi<Q.length-1){qi++;renderQ()}else{qtext.textContent='Kuis selesai!';qanswers.innerHTML=`<div class="score" style="grid-column:1/-1">${score}/5</div>`;qfb.className='feedback good';qfb.textContent=score>=4?'Bagus! Konsep dasar sudah dipahami.':'Ulangi materi yang masih sulit lalu coba lagi.';qnext.classList.add('hidden')}}function restartQ(){qi=0;score=0;renderQ()}function reflect(t){rfb.className='feedback good';rfb.textContent=t+' Sekarang jelaskan satu contoh kepada temanmu.'}renderQ();
-</script></body></html>
+const screens=[...document.querySelectorAll('.screen')];
+const navButtons=[...document.querySelectorAll('.nav-btn')];
+let current=0, loopTimer=null, built=[];
+
+function go(i){
+  current=Math.max(0,Math.min(screens.length-1,i));
+  screens.forEach((s,n)=>s.classList.toggle('active',n===current));
+  navButtons.forEach((b,n)=>b.classList.toggle('active',n===current));
+  document.getElementById('pageNow').textContent=current+1;
+  screens[current].scrollTop=0;
+}
+function next(){go(current+1)}
+function prev(){go(current-1)}
+function toggleFull(){
+  if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+  else document.exitFullscreen?.();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')next();
+  if(e.key==='ArrowLeft')prev();
+});
+
+// Loop demo
+function stopLoop(){
+  if(loopTimer){clearInterval(loopTimer);loopTimer=null}
+}
+function runRepeat(){
+  stopLoop();
+  const cat=document.getElementById('loopCat'), track=cat.parentElement, fb=document.getElementById('loopFb');
+  let n=0,x=14; cat.style.left='14px'; cat.style.transform='scaleX(1)';
+  fb.className='feedback'; fb.textContent='Repeat 10 sedang berjalan: hitung gerakannya!';
+  loopTimer=setInterval(()=>{
+    n++; x+=Math.max(19,track.clientWidth/30);
+    cat.style.left=Math.min(x,track.clientWidth-92)+'px';
+    if(n>=10){
+      clearInterval(loopTimer);loopTimer=null;
+      fb.className='feedback good';
+      fb.textContent='Selesai: perintah dijalankan tepat 10 kali, lalu berhenti.';
+    }
+  },230);
+}
+function runForever(){
+  stopLoop();
+  const cat=document.getElementById('loopCat'), track=cat.parentElement, fb=document.getElementById('loopFb');
+  let x=14,d=1; cat.style.left='14px';
+  fb.className='feedback';fb.textContent='Forever berjalan terus. Sentuh Stop jika ingin menghentikan.';
+  loopTimer=setInterval(()=>{
+    const max=track.clientWidth-92;
+    x+=16*d;
+    if(x>=max){x=max;d=-1;cat.style.transform='scaleX(-1)'}
+    if(x<=14){x=14;d=1;cat.style.transform='scaleX(1)'}
+    cat.style.left=x+'px';
+  },150);
+}
+
+// IF demo
+function resetIfDemo(){
+  const cat=document.getElementById('ifCat');
+  cat.style.left='14px';cat.style.transform='rotate(0deg) scaleX(1)';
+  const fb=document.getElementById('ifFb');
+  fb.className='feedback';fb.textContent='Apa yang akan dilakukan kucing ketika menyentuh pinggir?';
+}
+function runIfDemo(){
+  resetIfDemo();
+  const cat=document.getElementById('ifCat'), track=cat.parentElement, fb=document.getElementById('ifFb');
+  let x=14;
+  const t=setInterval(()=>{
+    x+=24;cat.style.left=Math.min(x,track.clientWidth-92)+'px';
+    if(x>=track.clientWidth-92){
+      clearInterval(t);
+      cat.style.transform='rotate(12deg) scaleX(-1)';
+      fb.className='feedback good';
+      fb.textContent='Kondisi BENAR: kucing menyentuh pinggir, maka aksi berbalik dijalankan.';
+    }
+  },175);
+}
+function branchCheck(correct){
+  const fb=document.getElementById('branchFb');
+  if(correct){
+    fb.className='feedback good';
+    fb.textContent='Tepat. Ada dua hasil yang harus ditampilkan, jadi gunakan IF–ELSE.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Karena kondisi benar dan salah sama-sama memiliki aksi, kita memerlukan IF–ELSE.';
+  }
+}
+
+// Operators
+function checkMath(){
+  const v=document.getElementById('mathInput').value.trim();
+  const fb=document.getElementById('mathFb');
+  if(v==='8'){
+    fb.className='feedback good';
+    fb.textContent='Benar! 5 + 3 menghasilkan 8, lalu operator = menyatakan jawabanmu sama dengan hasil tersebut.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Hitung dulu 5 + 3, kemudian bandingkan jawabanmu dengan hasilnya.';
+  }
+}
+
+// Builder
+function addBlock(btn){
+  built.push({
+    id:btn.dataset.id,
+    text:btn.textContent,
+    cls:[...btn.classList].find(c=>['event','control','motion'].includes(c)) || 'motion'
+  });
+  renderBuild();
+}
+function renderBuild(){
+  const w=document.getElementById('workspace');
+  if(!built.length){
+    w.innerHTML='<div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div>';
+    return;
+  }
+  w.innerHTML=built.map((b,i)=>`<div class="block ${b.cls}" style="${i>=2?'margin-left:24px':''}">${b.text}</div>`).join('');
+}
+function undoBlock(){built.pop();renderBuild()}
+function clearBuild(){
+  built=[];renderBuild();
+  const fb=document.getElementById('buildFb');
+  fb.className='feedback';fb.textContent='Susun 5 blok. Jika salah, gunakan petunjuk lalu coba lagi.';
+}
+function checkBuild(){
+  const target=['event','forever','move','ifedge','bounce'];
+  const ok=JSON.stringify(built.map(x=>x.id))===JSON.stringify(target);
+  const fb=document.getElementById('buildFb');
+  if(ok){
+    fb.className='feedback good';
+    fb.textContent='Susunan benar! Event → Forever → Gerak → Jika menyentuh pinggir → Berbalik.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Petunjuk: mulai dari event, lalu perulangan, gerak, kondisi, dan aksi.';
+  }
+}
+
+// Quiz
+const quiz=[
+  {
+    q:'Blok apa yang digunakan agar sebuah perintah dijalankan terus-menerus sampai program dihentikan?',
+    a:['Repeat 10','Forever','Jika–Maka','Operator ='], c:1,
+    e:'Forever mengulang perintah tanpa batas sampai program dihentikan.'
+  },
+  {
+    q:'Apa perbedaan utama Repeat 10 dan Forever?',
+    a:['Repeat 10 selalu lebih cepat','Repeat 10 punya jumlah pengulangan tertentu; Forever terus berjalan','Forever hanya berjalan 10 kali','Keduanya sama'], c:1,
+    e:'Repeat memakai jumlah tertentu, sedangkan Forever terus mengulang.'
+  },
+  {
+    q:'Jika sebuah aksi hanya dilakukan ketika kondisi benar, blok yang paling tepat adalah ...',
+    a:['Jika–Maka','Forever','Operator +','Repeat'], c:0,
+    e:'Jika–Maka memeriksa kondisi dan menjalankan aksi hanya ketika kondisi benar.'
+  },
+  {
+    q:'Jika kita ingin aksi A saat kondisi benar dan aksi B saat kondisi salah, kita menggunakan ...',
+    a:['Repeat','Jika–Maka–Jika Tidak','Operator +','Gerak 10 langkah'], c:1,
+    e:'IF–ELSE menyediakan dua jalan: satu untuk benar, satu untuk salah.'
+  },
+  {
+    q:'Operator + digunakan untuk ...',
+    a:['Membandingkan nilai','Menjumlahkan nilai','Mengulang perintah','Memutar sprite'], c:1,
+    e:'Operator + melakukan penjumlahan.'
+  },
+  {
+    q:'Operator = digunakan untuk ...',
+    a:['Menambah dua angka','Membandingkan apakah dua nilai sama','Menggerakkan kucing','Menghentikan program'], c:1,
+    e:'Operator = menguji kesamaan dua nilai.'
+  },
+  {
+    q:'Pada kondisi jawaban = (5 + 3), berapa jawaban yang membuat kondisi bernilai benar?',
+    a:['5','3','8','15'], c:2,
+    e:'5 + 3 = 8, jadi jawaban 8 membuat kondisi benar.'
+  },
+  {
+    q:'Kucing harus terus bergerak dan setiap saat mengecek apakah menyentuh pinggir. Blok Jika sebaiknya diletakkan ...',
+    a:['Di dalam Forever','Di luar semua event','Setelah program dihentikan','Tidak perlu digunakan'], c:0,
+    e:'Kondisi perlu diperiksa berulang-ulang, jadi diletakkan di dalam Forever.'
+  },
+  {
+    q:'Program belum bekerja sesuai rencana. Langkah debugging yang paling tepat adalah ...',
+    a:['Menghapus seluruh kode','Mengubah banyak blok sekaligus','Mencari bagian yang bermasalah, mengubah satu bagian, lalu menguji lagi','Langsung membuat proyek baru'], c:2,
+    e:'Debugging dilakukan bertahap agar penyebab masalah dapat ditemukan.'
+  },
+  {
+    q:'Dalam kerja kelompok, mengapa operator Chromebook perlu berganti?',
+    a:['Agar semua murid mendapat kesempatan praktik','Agar program semakin panjang','Agar layar lebih terang','Agar tugas lebih sulit'], c:0,
+    e:'Pergantian peran membuat kesempatan praktik lebih merata.'
+  }
+];
+let qi=0,score=0,quizLocked=false;
+function renderQuiz(){
+  const item=quiz[qi];
+  document.getElementById('quizPos').textContent=qi+1;
+  document.getElementById('quizQuestion').textContent=item.q;
+  document.getElementById('quizAnswers').innerHTML=item.a.map((x,i)=>`<button class="answer" onclick="chooseAnswer(${i},this)">${String.fromCharCode(65+i)}. ${x}</button>`).join('');
+  const fb=document.getElementById('quizFb');fb.className='feedback';fb.textContent='Pilih satu jawaban.';
+  document.getElementById('quizNext').style.display='none';
+  document.getElementById('quizProgress').style.width=(qi/quiz.length*100)+'%';
+  quizLocked=false;
+}
+function chooseAnswer(i,btn){
+  if(quizLocked)return;
+  quizLocked=true;
+  const item=quiz[qi], buttons=[...document.querySelectorAll('#quizAnswers .answer')];
+  buttons[item.c].classList.add('correct');
+  const fb=document.getElementById('quizFb');
+  if(i===item.c){
+    score++;fb.className='feedback good';fb.textContent='Benar. '+item.e;
+  }else{
+    btn.classList.add('wrong');fb.className='feedback bad';fb.textContent='Belum tepat. '+item.e;
+  }
+  document.getElementById('quizNext').style.display='inline-block';
+  document.getElementById('quizProgress').style.width=((qi+1)/quiz.length*100)+'%';
+}
+function nextQuestion(){
+  if(qi<quiz.length-1){qi++;renderQuiz();return}
+  const q=document.getElementById('quizQuestion');
+  const a=document.getElementById('quizAnswers');
+  q.textContent='Kuis selesai!';
+  a.innerHTML=`<div class="score" style="grid-column:1/-1">${score}/10</div>`;
+  const fb=document.getElementById('quizFb');
+  fb.className=score>=8?'feedback good':'feedback';
+  fb.textContent=score>=8?'Bagus! Pemahaman dasarmu sudah kuat.':score>=6?'Cukup baik. Ulangi konsep yang masih keliru lalu coba lagi.':'Belum masalah. Kembali ke materi, diskusikan, lalu coba kuis lagi.';
+  document.getElementById('quizNext').style.display='none';
+}
+function restartQuiz(){qi=0;score=0;renderQuiz()}
+
+// Reflection
+const reflections=[
+  'Apa perbedaan Repeat dan Forever? Berikan satu contoh penggunaan masing-masing.',
+  'Apa perbedaan Jika–Maka dan Jika–Maka–Jika Tidak? Jelaskan dengan bahasamu sendiri.',
+  'Apa fungsi operator + dan operator = pada program Kucing Cerdas?',
+  'Bagian kode apa yang paling mudah kamu pahami hari ini? Mengapa?',
+  'Kesalahan apa yang ditemukan kelompokmu saat program diuji?',
+  'Apa langkah yang dilakukan kelompokmu untuk memperbaiki kesalahan tersebut?',
+  'Bagaimana pembagian peran membantu semua anggota kelompok ikut belajar?',
+  'Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi dan untuk apa?'
+];
+function showReflection(i){
+  const fb=document.getElementById('reflectionFb');
+  fb.className='feedback good';
+  fb.textContent=reflections[i];
+}
+function confidence(text){
+  const fb=document.getElementById('confidenceFb');
+  fb.className='feedback good';fb.textContent=text;
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
