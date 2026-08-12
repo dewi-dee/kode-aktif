@@ -103,6 +103,7 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
 .event{background:#f0ba27;color:#1c2530}.control{background:var(--control)}.motion{background:var(--motion)}
 .looks{background:var(--looks)}.sense{background:var(--sense)}.operator{background:var(--operator)}
 .indent{margin-left:28px}
+.scratch-demo{display:grid;gap:10px;margin:12px 0}.scratch-caption{font-size:15px;color:#4d6075;margin-top:0;line-height:1.45}.svg-block-wrap{display:block;max-width:100%}.scratch-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 3px 0 rgba(175,118,9,.18))}.scratch-svg.stack{filter:drop-shadow(0 3px 0 rgba(49,103,170,.18))}.scratch-svg.purple{filter:drop-shadow(0 3px 0 rgba(92,60,158,.18))}.scratch-pair{display:flex;flex-direction:column;gap:8px;margin:12px 0}.scratch-bank-btn{display:block;width:100%;background:transparent;border:0;padding:0;margin:8px 0;text-align:left}.scratch-bank-btn:hover{transform:translateX(2px)}.workspace .svg-block-wrap{margin-bottom:8px}.mini-help{font-size:14px;color:#73859a;margin-top:8px}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .compare-card{border-radius:20px;padding:17px;border:2px solid #dde9ef;background:#fff}
 .compare-card.if{border-color:#8fd880;background:#f7fff3}.compare-card.ifelse{border-color:#ffc267;background:#fffaf0}
@@ -211,7 +212,7 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
     </div>
 
     <div class="hero-art">
-      <img src="hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
+      <img src="assets/hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
       <div class="hero-overlay">
         <div class="cat-bubble" aria-hidden="true">
           <svg viewBox="0 0 120 120">
@@ -241,15 +242,19 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
     <div class="grid2">
       <div class="card">
         <h3>Bandingkan dua jenis perulangan</h3>
-        <div class="block control">ulangi 10 kali</div>
-        <div class="block motion indent">gerak 5 langkah</div>
-        <p><b>Repeat 10</b>: perintah di dalamnya dijalankan tepat 10 kali, kemudian berhenti.</p>
+        <div class="scratch-demo">
+          <div id="exRepeat" class="svg-block-wrap"></div>
+          <div id="exMove1" class="svg-block-wrap indent"></div>
+          <div class="scratch-caption"><b>Ulangi 10 kali</b>: perintah di dalamnya dijalankan tepat 10 kali, kemudian berhenti.</div>
+        </div>
 
-        <div class="block control">selamanya</div>
-        <div class="block motion indent">gerak 5 langkah</div>
-        <p><b>Forever</b>: perintah di dalamnya terus dijalankan sampai program dihentikan.</p>
+        <div class="scratch-demo">
+          <div id="exForever" class="svg-block-wrap"></div>
+          <div id="exMove2" class="svg-block-wrap indent"></div>
+          <div class="scratch-caption"><b>Selamanya</b>: perintah di dalamnya terus dijalankan sampai program dihentikan.</div>
+        </div>
 
-        <div class="warning"><b>Jangan tertukar:</b> perulangan dipakai untuk <b>mengulang</b>. Blok <b>jika...maka</b> bukan perulangan; blok itu termasuk <b>percabangan</b> karena memeriksa kondisi.</div>
+        <div class="warning"><b>Jangan tertukar:</b> perulangan dipakai untuk <b>mengulang</b>. Blok <b>jika...maka</b> atau <b>jika...maka...jika tidak</b> bukan perulangan; keduanya termasuk <b>percabangan</b> karena memeriksa kondisi.</div>
       </div>
 
       <div class="card">
@@ -293,19 +298,22 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
       <div class="compare-card if">
         <div class="compare-title green-text">A. Jika ... Maka (IF)</div>
         <p>Program <b>memeriksa satu kondisi</b>. Jika kondisi benar, aksi dijalankan. Jika kondisi salah, tidak ada aksi alternatif.</p>
-        <div class="block control">jika &lt;menyentuh pinggir?&gt; maka</div>
-        <div class="block motion indent">putar 15 derajat</div>
+        <div class="scratch-demo">
+          <div id="exIf" class="svg-block-wrap"></div>
+          <div id="exIfAction" class="svg-block-wrap indent"></div>
+        </div>
         <div class="tip"><b>Contoh:</b> Jika kucing menyentuh pinggir, maka kucing berputar. Jika belum menyentuh pinggir, tidak ada perintah tambahan.</div>
       </div>
 
       <div class="compare-card ifelse">
         <div class="compare-title orange-text">B. Jika ... Maka ... Jika Tidak (IF–ELSE)</div>
         <p>Program memilih <b>dua kemungkinan</b>: aksi untuk kondisi benar dan aksi lain untuk kondisi salah.</p>
-        <div class="block control">jika &lt;jawaban = 8&gt; maka</div>
-        <div class="block looks indent">katakan “Benar!”</div>
-        <div class="block control indent">jika tidak</div>
-        <div class="block looks indent">katakan “Coba lagi!”</div>
-        <div class="tip"><b>Ingat:</b> IF punya satu jalan tindakan. IF–ELSE menyediakan dua jalan tindakan.</div>
+        <div class="scratch-demo">
+          <div id="exIfElse" class="svg-block-wrap"></div>
+          <div id="exSayTrue" class="svg-block-wrap indent"></div>
+          <div id="exSayFalse" class="svg-block-wrap indent"></div>
+        </div>
+        <div class="tip"><b>Ingat:</b> IF hanya memiliki aksi saat kondisi benar. IF–ELSE memiliki aksi saat kondisi benar dan aksi lain saat kondisi salah.</div>
       </div>
     </div>
 
@@ -363,12 +371,11 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
           <div class="op-card"><div class="op-symbol">=</div><h3>Pembanding</h3><p>Memeriksa apakah dua nilai sama. Hasilnya benar atau salah.</p></div>
         </div>
 
-        <div style="margin-top:15px">
-          <div class="block sense">tanyakan “Berapa hasil 5 + 3?” dan tunggu</div>
-          <div class="block control">jika &lt;jawaban = (5 + 3)&gt; maka</div>
-          <div class="block looks indent">katakan “Benar!”</div>
-          <div class="block control">jika tidak</div>
-          <div class="block looks indent">katakan “Coba lagi!”</div>
+        <div style="margin-top:15px" class="scratch-pair">
+          <div id="opAsk" class="svg-block-wrap"></div>
+          <div id="opIfElse" class="svg-block-wrap"></div>
+          <div id="opSayTrue" class="svg-block-wrap indent"></div>
+          <div id="opSayFalse" class="svg-block-wrap indent"></div>
         </div>
       </div>
 
@@ -453,17 +460,17 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
     <div class="builder">
       <div class="bank">
         <h3>Bank Blok</h3>
-        <button class="tapblock event" data-id="event" onclick="addBlock(this)">ketika bendera hijau diklik</button>
-        <button class="tapblock control" data-id="forever" onclick="addBlock(this)">selamanya</button>
-        <button class="tapblock motion" data-id="move" onclick="addBlock(this)">gerak 10 langkah</button>
-        <button class="tapblock control" data-id="ifedge" onclick="addBlock(this)">jika menyentuh pinggir maka</button>
-        <button class="tapblock motion" data-id="bounce" onclick="addBlock(this)">berbalik / bounce</button>
-        <div class="tip" style="margin-top:12px"><b>Petunjuk:</b> mulai dari event → ulangi terus → gerak → cek pinggir → bereaksi.</div>
+        <button class="scratch-bank-btn" data-id="event" onclick="addBlock(this)"><div id="bankEvent" class="svg-block-wrap"></div></button>
+        <button class="scratch-bank-btn" data-id="forever" onclick="addBlock(this)"><div id="bankForever" class="svg-block-wrap"></div></button>
+        <button class="scratch-bank-btn" data-id="move" onclick="addBlock(this)"><div id="bankMove" class="svg-block-wrap"></div></button>
+        <button class="scratch-bank-btn" data-id="ifedge" onclick="addBlock(this)"><div id="bankIf" class="svg-block-wrap"></div></button>
+        <button class="scratch-bank-btn" data-id="bounce" onclick="addBlock(this)"><div id="bankBounce" class="svg-block-wrap"></div></button>
+        <div class="tip" style="margin-top:12px"><b>Petunjuk:</b> bentuk blok sekarang dibuat mirip Scratch. Perhatikan: <b>forever</b> berbentuk blok perulangan, dan <b>if ... then</b> berbentuk blok percabangan.</div>
       </div>
 
       <div class="workspace">
         <h3>Area Kerja</h3>
-        <div id="workspace"><div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div></div>
+        <div id="workspace"><div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div></div><div class="mini-help">Susun blok dengan bentuk aslinya agar lebih mirip saat kalian bekerja di Scratch.</div>
         <div class="sim-controls" style="margin-top:11px">
           <button class="btn green" onclick="checkBuild()">Periksa Susunan</button>
           <button class="btn orange" onclick="undoBlock()">Batalkan Terakhir</button>
@@ -503,7 +510,7 @@ h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spac
     </div>
 
     <div class="reflection-grid">
-      <button class="reflect-btn" onclick="showReflection(0)">1. Apa perbedaan <b>Repeat</b> dan <b>Forever</b>? Beri satu contoh.</button>
+      <button class="reflect-btn" onclick="showReflection(0)">1. Apa perbedaan <b>Repeat</b> dan <b>Selamanya</b>? Beri satu contoh.</button>
       <button class="reflect-btn" onclick="showReflection(1)">2. Apa perbedaan <b>Jika–Maka</b> dan <b>Jika–Maka–Jika Tidak</b>?</button>
       <button class="reflect-btn" onclick="showReflection(2)">3. Apa fungsi operator <b>+</b> dan operator <b>=</b>?</button>
       <button class="reflect-btn" onclick="showReflection(3)">4. Bagian kode apa yang paling mudah kamu pahami? Mengapa?</button>
@@ -641,13 +648,88 @@ function checkMath(){
   }
 }
 
-// Builder
+// Scratch-style SVG blocks
+function scratchStack(label,color,width=760,txt='#ffffff',extra=''){
+  const h=72;
+  return `<svg viewBox="0 0 ${width} ${h}" class="scratch-svg stack ${extra}">
+    <path d="M10 14 H44 C46 8 52 4 60 4 H88 C96 4 102 8 104 14 H${width-10} C${width-4} 14 ${width} 18 ${width} 24 V54 C${width} 60 ${width-4} 64 ${width-10} 64 H104 C102 70 96 72 88 72 H60 C52 72 46 68 44 64 H10 C4 64 0 60 0 54 V24 C0 18 4 14 10 14 Z" fill="${color}"/>
+    <text x="20" y="43" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="${txt}">${label}</text>
+  </svg>`;
+}
+function scratchControlRepeat(label='ulangi',num='10',suffix='kali',width=245){
+  const h=160, w=width;
+  return `<svg viewBox="0 0 ${w} ${h}" class="scratch-svg">
+    <path d="M10 14 H44 C46 8 52 4 60 4 H88 C96 4 102 8 104 14 H${w-10} C${w-4} 14 ${w} 18 ${w} 24 V134 C${w} 140 ${w-4} 144 ${w-10} 144 H104 C102 150 96 154 88 154 H60 C52 154 46 150 44 144 H10 C4 144 0 140 0 134 V24 C0 18 4 14 10 14 Z" fill="#f6ae1a"/>
+    <text x="14" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">${label}</text>
+    <rect x="82" y="10" rx="18" ry="18" width="64" height="40" fill="#ffffff"/>
+    <text x="114" y="36" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#5d7082">${num}</text>
+    <text x="160" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">${suffix}</text>
+    <path d="M24 58 H${w-16} V108 H50 C46 108 42 104 42 100 V84 H26 C22 84 20 82 20 78 V66 C20 62 22 60 24 58 Z" fill="#ffffff"/>
+    <text x="${w-28}" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="900" fill="#ffffff">↻</text>
+  </svg>`;
+}
+function scratchControlForever(label='selamanya',width=245){
+  const h=160, w=width;
+  return `<svg viewBox="0 0 ${w} ${h}" class="scratch-svg">
+    <path d="M10 14 H44 C46 8 52 4 60 4 H88 C96 4 102 8 104 14 H${w-10} C${w-4} 14 ${w} 18 ${w} 24 V134 C${w} 140 ${w-4} 144 ${w-10} 144 H104 C102 150 96 154 88 154 H60 C52 154 46 150 44 144 H10 C4 144 0 140 0 134 V24 C0 18 4 14 10 14 Z" fill="#f6ae1a"/>
+    <text x="14" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">${label}</text>
+    <path d="M24 58 H${w-16} V108 H50 C46 108 42 104 42 100 V84 H26 C22 84 20 82 20 78 V66 C20 62 22 60 24 58 Z" fill="#ffffff"/>
+    <text x="${w-28}" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="900" fill="#ffffff">↻</text>
+  </svg>`;
+}
+function scratchIfBlock(cond=' ',width=245){
+  const h=160, w=width;
+  return `<svg viewBox="0 0 ${w} ${h}" class="scratch-svg">
+    <path d="M10 14 H44 C46 8 52 4 60 4 H88 C96 4 102 8 104 14 H${w-10} C${w-4} 14 ${w} 18 ${w} 24 V134 C${w} 140 ${w-4} 144 ${w-10} 144 H104 C102 150 96 154 88 154 H60 C52 154 46 150 44 144 H10 C4 144 0 140 0 134 V24 C0 18 4 14 10 14 Z" fill="#f6ae1a"/>
+    <text x="14" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">jika</text>
+    <path d="M78 30 L95 18 H125 L142 30 L125 42 H95 Z" fill="#d99714"/>
+    ${cond.trim()?`<text x="110" y="33" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#ffffff">${cond}</text>`:''}
+    <path d="M24 58 H${w-16} V108 H50 C46 108 42 104 42 100 V84 H26 C22 84 20 82 20 78 V66 C20 62 22 60 24 58 Z" fill="#ffffff"/>
+  </svg>`;
+}
+function scratchIfElseBlock(cond=' ',width=245){
+  const h=198, w=width;
+  return `<svg viewBox="0 0 ${w} ${h}" class="scratch-svg">
+    <path d="M10 14 H44 C46 8 52 4 60 4 H88 C96 4 102 8 104 14 H${w-10} C${w-4} 14 ${w} 18 ${w} 24 V172 C${w} 178 ${w-4} 182 ${w-10} 182 H104 C102 188 96 192 88 192 H60 C52 192 46 188 44 182 H10 C4 182 0 178 0 172 V24 C0 18 4 14 10 14 Z" fill="#f6ae1a"/>
+    <text x="14" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">jika</text>
+    <path d="M78 30 L95 18 H125 L142 30 L125 42 H95 Z" fill="#d99714"/>
+    ${cond.trim()?`<text x="110" y="33" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#ffffff">${cond}</text>`:''}
+    <path d="M24 58 H${w-16} V98 H50 C46 98 42 94 42 90 V84 H26 C22 84 20 82 20 78 V66 C20 62 22 60 24 58 Z" fill="#ffffff"/>
+    <text x="14" y="126" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff">jika tidak</text>
+    <path d="M24 138 H${w-16} V166 H50 C46 166 42 162 42 158 V154 H26 C22 154 20 152 20 148 V144 C20 140 22 138 24 138 Z" fill="#ffffff"/>
+  </svg>`;
+}
+function blockHtml(id){
+  if(id==='event') return scratchStack('ketika bendera hijau diklik','#f0c43b',340,'#1f2933');
+  if(id==='forever') return scratchControlForever('selamanya',245);
+  if(id==='move') return scratchStack('gerak 10 langkah','#4c97ff',340,'#ffffff');
+  if(id==='ifedge') return scratchIfBlock(' ',245);
+  if(id==='bounce') return scratchStack('berbalik / bounce','#4c97ff',340,'#ffffff');
+  return scratchStack('blok','#4c97ff',320,'#ffffff');
+}
+function populateScratchVisuals(){
+  const set=(id,html)=>{const el=document.getElementById(id); if(el) el.innerHTML=html;};
+  set('exRepeat', scratchControlRepeat('ulangi','10','kali',245));
+  set('exMove1', scratchStack('gerak 5 langkah','#4c97ff',760,'#ffffff'));
+  set('exForever', scratchControlForever('selamanya',245));
+  set('exMove2', scratchStack('gerak 5 langkah','#4c97ff',760,'#ffffff'));
+  set('exIf', scratchIfBlock(' ',245));
+  set('exIfAction', scratchStack('putar 15 derajat','#4c97ff',760,'#ffffff'));
+  set('exIfElse', scratchIfElseBlock(' ',245));
+  set('exSayTrue', scratchStack('katakan “Benar!”','#9966ff',760,'#ffffff','purple'));
+  set('exSayFalse', scratchStack('katakan “Coba lagi!”','#9966ff',760,'#ffffff','purple'));
+  set('opAsk', scratchStack('tanyakan “Berapa hasil 5 + 3?” dan tunggu','#5cb1d6',760,'#ffffff'));
+  set('opIfElse', scratchIfElseBlock('jawaban=8',245));
+  set('opSayTrue', scratchStack('katakan “Benar!”','#9966ff',760,'#ffffff','purple'));
+  set('opSayFalse', scratchStack('katakan “Coba lagi!”','#9966ff',760,'#ffffff','purple'));
+  set('bankEvent', scratchStack('ketika bendera hijau diklik','#f0c43b',340,'#1f2933'));
+  set('bankForever', scratchControlForever('selamanya',245));
+  set('bankMove', scratchStack('gerak 10 langkah','#4c97ff',340,'#ffffff'));
+  set('bankIf', scratchIfBlock(' ',245));
+  set('bankBounce', scratchStack('berbalik / bounce','#4c97ff',340,'#ffffff'));
+}
 function addBlock(btn){
-  built.push({
-    id:btn.dataset.id,
-    text:btn.textContent,
-    cls:[...btn.classList].find(c=>['event','control','motion'].includes(c)) || 'motion'
-  });
+  built.push({id:btn.dataset.id});
   renderBuild();
 }
 function renderBuild(){
@@ -656,7 +738,7 @@ function renderBuild(){
     w.innerHTML='<div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div>';
     return;
   }
-  w.innerHTML=built.map((b,i)=>`<div class="block ${b.cls}" style="${i>=2?'margin-left:24px':''}">${b.text}</div>`).join('');
+  w.innerHTML=built.map((b,i)=>`<div class="svg-block-wrap" style="${i>=2?'margin-left:24px':''}">${blockHtml(b.id)}</div>`).join('');
 }
 function undoBlock(){built.pop();renderBuild()}
 function clearBuild(){
@@ -670,12 +752,13 @@ function checkBuild(){
   const fb=document.getElementById('buildFb');
   if(ok){
     fb.className='feedback good';
-    fb.textContent='Susunan benar! Event → Forever → Gerak → Jika menyentuh pinggir → Berbalik.';
+    fb.textContent='Susunan benar! Bentuk dan urutannya sudah sesuai: event → forever → gerak → if → bounce.';
   }else{
     fb.className='feedback bad';
-    fb.textContent='Belum tepat. Petunjuk: mulai dari event, lalu perulangan, gerak, kondisi, dan aksi.';
+    fb.textContent='Belum tepat. Petunjuk: cari dulu blok event, lalu blok perulangan, kemudian blok gerak, blok percabangan, dan terakhir aksi berbalik.';
   }
 }
+populateScratchVisuals();
 
 // Quiz
 const quiz=[
