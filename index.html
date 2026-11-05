@@ -1,184 +1,849 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <base target="_top">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>E-Vote OSIS | UPTD SMPN 2 Topoyo</title>
-  <style>
-    :root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#10243d;background:#eff4fa;font-synthesis:none}
-    *{box-sizing:border-box}html{min-height:100%}body{margin:0;background:radial-gradient(circle at 92% 6%,#d9e8fb,transparent 35%),radial-gradient(circle at 10% 95%,#dceee9,transparent 38%),#eff4fa;min-height:100vh}
-    button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.52;cursor:not-allowed}button:focus-visible,input:focus-visible{outline:3px solid #7ec2f1;outline-offset:3px}
-    .topbar{background:#0b2446;color:#fff;padding:15px clamp(18px,5vw,70px);display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 3px 25px #0b24461a}
-    .brand{display:flex;gap:13px;align-items:center;min-width:0}.crest{flex:0 0 43px;width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#ffd65a,#e8a933);color:#122648;font-weight:1000;font-size:21px;box-shadow:0 4px 15px #0002}
-    .brand small{color:#b8d1f0;font-size:11px;font-weight:750;letter-spacing:1.2px;display:block;margin-bottom:3px}.brand strong{font-size:15px;line-height:1.3;display:block}
-    .status{font-weight:800;font-size:11px;letter-spacing:.65px;border-radius:100px;padding:9px 12px;background:#18395f;color:#d9e9fc;white-space:nowrap}.status.open{background:#165d4e;color:#d7fff3}.status.test{background:#715116;color:#fff2c9}
-    .wrap{max-width:1050px;margin:0 auto;padding:24px 18px 36px}.eyebrow{letter-spacing:2.2px;text-transform:uppercase;color:#007991;font-weight:900;font-size:11px}
-    .hero{text-align:center;margin:20px auto 23px}.hero h1{font-size:clamp(29px,4.8vw,45px);line-height:1.08;letter-spacing:-1.3px;margin:9px 0 10px;color:#102b50}.hero p{font-size:14px;color:#5c7087;margin:0;line-height:1.6}
-    .stage{max-width:510px;margin:auto;background:white;border:1px solid #dbe5f1;border-radius:23px;padding:clamp(22px,4vw,38px);box-shadow:0 18px 55px #17335316}
-    h2{margin:0 0 8px;color:#142d4f;font-size:23px;letter-spacing:-.55px}.intro{margin:0 0 22px;color:#60738a;line-height:1.6;font-size:14px}.field{display:block;margin-bottom:18px;font-size:13px;font-weight:800;color:#233c59}.field input{width:100%;margin-top:8px;display:block;padding:14px 15px;border:1px solid #c8d6e5;border-radius:11px;background:#f9fbff;color:#1b3554;font-size:18px;letter-spacing:.5px}.field input:focus{border-color:#1599b2;outline:2px solid #d2f3f7}
-    .primary{background:linear-gradient(110deg,#087e91,#1260b4);color:white;border:0;border-radius:11px;padding:15px 21px;font-size:15px;font-weight:850;box-shadow:0 7px 16px #0675b52a;min-height:50px}.primary:hover:not(:disabled){filter:brightness(1.07)}.wfull{width:100%}.secondary{background:white;border:1px solid #c8d6e5;color:#284463;border-radius:11px;padding:13px 18px;font-weight:750;min-height:49px}
-    .tip{display:flex;gap:9px;align-items:flex-start;background:#eff8fc;padding:13px 15px;border-radius:11px;margin-top:19px;color:#496780;font-size:12px;line-height:1.6}.tip b{color:#155c7a}
-    .error{background:#fff0f1;color:#a01d36;border:1px solid #ffd2d9;padding:12px 15px;border-radius:10px;margin:12px 0;font-size:13px;font-weight:680;line-height:1.5}.hidden{display:none!important}
-    .identityIcon{width:75px;height:75px;margin:6px auto 17px;display:grid;place-items:center;border-radius:21px;background:linear-gradient(135deg,#dcf7f2,#d8e9fb);font-size:35px}
-    .identity{text-align:center}.identity .label{font-size:12px;color:#66809a;letter-spacing:1.3px;font-weight:850;text-transform:uppercase}.identity .person{font-size:clamp(22px,4.5vw,31px);font-weight:900;letter-spacing:-.8px;margin:8px 0}.tag{display:inline-block;background:#e6f2fb;color:#15527b;border-radius:50px;padding:8px 14px;font-size:13px;font-weight:800}.detail{text-align:left;margin:24px 0 22px;border:1px solid #d9e5ee;border-radius:12px;overflow:hidden}.detail div{display:flex;justify-content:space-between;gap:20px;padding:12px 16px;border-bottom:1px solid #e6edf5;font-size:13px}.detail div:last-child{border:0}.detail b{color:#234262}
-    .actions{display:flex;gap:10px;flex-wrap:wrap}.actions>*{flex:1 1 170px}
-    .ballotHead{display:flex;gap:15px;align-items:start;justify-content:space-between;margin-bottom:23px}.ballotHead h2{margin-bottom:8px}.pill{background:#e8f4fb;color:#13527a;font-size:12px;font-weight:800;border-radius:100px;padding:8px 12px;white-space:nowrap}
-    .ballot{max-width:1040px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.candidate{background:white;border:1px solid #dce7f0;border-radius:20px;padding:15px;display:flex;flex-direction:column;box-shadow:0 12px 30px #18375912;overflow:hidden}
-    .portrait{height:184px;border-radius:15px;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,var(--pale),#eaf0fb);overflow:hidden}.portrait img{position:absolute;width:100%;height:100%;object-fit:cover}.portrait .avatar{font-size:70px;line-height:1;opacity:.8}.badge{position:absolute;left:12px;top:12px;padding:8px 11px;background:white;color:var(--strong);border-radius:9px;font-size:14px;font-weight:900;box-shadow:0 5px 16px #0002}
-    .candidate h3{font-size:17px;margin:15px 0 5px;line-height:1.35;color:#192e4e;min-height:44px}.candSubtitle{margin:0 0 6px;color:#6a7a8c;font-size:11px;text-transform:uppercase;letter-spacing:1.1px;font-weight:900}.candWakil{font-size:15px;color:#264b67;font-weight:760;margin:0 0 23px;line-height:1.36;min-height:41px}.choose{border:0;background:var(--strong);color:white;border-radius:11px;min-height:48px;font-weight:900;margin-top:auto;font-size:14px}.candidate:nth-child(1){--pale:#ffe4d8;--strong:#d54a33}.candidate:nth-child(2){--pale:#d9e5ff;--strong:#245fbd}.candidate:nth-child(3){--pale:#d5f3e7;--strong:#12866d}
-    .notice{text-align:center;font-size:12px;color:#64788a;line-height:1.6;margin:22px 0 0}.successIcon{width:95px;height:95px;border:3px solid #b7e4d3;border-radius:50%;display:grid;place-items:center;background:#e1f8ee;color:#128565;font-size:53px;font-weight:900;margin:5px auto 23px}.success{text-align:center}.success h2{font-size:28px}.success .message{line-height:1.75;color:#526c85;font-size:14px}.timer{font-size:24px;font-weight:900;color:#0d7d8e;margin:16px 0 23px}.warn{color:#8d5100;background:#fff8e6;border:1px solid #fee7b2;padding:11px 14px;border-radius:10px;font-size:12px;line-height:1.55;margin:0 0 16px}
-    .overlay{position:fixed;inset:0;background:#0c2238a9;z-index:50;display:grid;place-items:center;padding:18px}.modal{background:white;max-width:430px;width:100%;border-radius:19px;box-shadow:0 30px 75px #0004;padding:26px}.modal h2{font-size:22px}.modal p{color:#61748b;line-height:1.6;margin:0 0 18px;font-size:14px}.modal .chosen{background:#eff6fd;border:1px solid #d6e6f6;border-radius:12px;padding:15px;margin-bottom:20px;font-size:16px;font-weight:900;color:#12466e}
-    .foot{text-align:center;margin:30px auto;color:#7d91a5;font-size:12px;line-height:1.5}.spinner{display:inline-block;width:17px;height:17px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .75s linear infinite;vertical-align:-3px;margin-right:9px}@keyframes spin{to{transform:rotate(360deg)}}
-    @media(max-width:760px){.topbar{padding:14px 18px}.brand strong{font-size:12px}.brand small{font-size:9px}.wrap{padding:17px 14px 30px}.hero{margin:13px auto 20px}.hero h1{font-size:32px}.grid{grid-template-columns:1fr}.candidate{display:grid;grid-template-columns:125px 1fr;gap:0 14px}.candidate .portrait{grid-row:span 4;height:170px}.candidate h3{font-size:16px;min-height:0;margin-top:4px}.candidate .candWakil{min-height:0;margin-bottom:8px}.candidate .choose{grid-column:2}.candidate .portrait .avatar{font-size:48px}.ballotHead{flex-wrap:wrap}.ballotHead h2{font-size:21px}.pill{order:2}.portrait .badge{font-size:11px}.modal{padding:21px}}
-    @media(max-width:380px){.brand{gap:9px}.crest{width:36px;height:36px;flex-basis:36px}.status{padding:7px 9px;font-size:9px}.candidate{grid-template-columns:105px 1fr;gap:0 10px}.candidate .portrait{height:154px}.candidate .candWakil{font-size:13px}.candidate h3{font-size:14px}.choose{min-height:42px}}
-    @media(prefers-reduced-motion:reduce){.spinner{animation:none}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#163a78">
+<title>KODE-AKTIF — Bahan Ajar Interaktif Fase D</title>
+<style>
+:root{
+  --navy:#0b2a5b; --blue:#168bf2; --cyan:#24c5e8; --green:#38bd77;
+  --lime:#8bd94d; --yellow:#ffd44d; --orange:#ff8b35; --red:#ff5d67;
+  --purple:#8f63e9; --pink:#f35ba1; --ink:#18304b; --muted:#62758a;
+  --paper:#fffdf8; --soft:#f5f9ff; --border:#d9e8f5; --shadow:0 18px 45px rgba(25,55,95,.16);
+  --control:#ffab19; --motion:#4c97ff; --looks:#9966ff; --sense:#5cb1d6; --operator:#59c059;
+  --device-safe-bottom:max(12px, env(safe-area-inset-bottom, 0px));
+  --device-safe-top:max(0px, env(safe-area-inset-top, 0px));
+}
+body.pid-touch{--device-safe-bottom:max(84px, env(safe-area-inset-bottom, 0px));}
+body.compact-touch{--device-safe-bottom:max(58px, env(safe-area-inset-bottom, 0px));}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-rounded,"Segoe UI",Arial,sans-serif;background:#eef7ff;color:var(--ink);overflow:hidden}
+html{height:100%;height:100dvh}
+body{min-height:100%;min-height:100dvh;padding-top:var(--device-safe-top)}
+body{touch-action:manipulation}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{height:calc(100dvh - var(--device-safe-top) - var(--device-safe-bottom));min-height:calc(100svh - var(--device-safe-top) - var(--device-safe-bottom));display:grid;grid-template-columns:245px 1fr}
+.sidebar{
+  height:100%;padding:18px 14px;background:
+  radial-gradient(circle at 30% 5%,rgba(37,176,255,.28),transparent 24%),
+  linear-gradient(180deg,#073170 0%,#082c62 60%,#071f47 100%);
+  color:#fff;display:flex;flex-direction:column;gap:12px;box-shadow:8px 0 30px rgba(4,35,78,.14);z-index:10
+}
+.brand{padding:4px 9px 12px}
+.brand-title{font-size:30px;line-height:1;font-weight:1000;letter-spacing:-1px}
+.brand-title .y{color:var(--yellow)} .brand-title .g{color:#58e499}.brand-title .c{color:#64dcff}
+.brand-sub{font-size:13px;color:#d8edff;margin-top:7px;line-height:1.35}
+.nav-list{display:grid;gap:9px}
+.nav-btn{
+  border:0;color:#fff;text-align:left;min-height:54px;padding:10px 12px;border-radius:17px;
+  display:flex;align-items:center;gap:11px;font-weight:900;transition:.18s transform,.18s filter;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)
+}
+.nav-btn:hover,.nav-btn:focus{transform:translateX(4px);filter:brightness(1.08);outline:none}
+.nav-btn.active{outline:3px solid rgba(255,255,255,.92);outline-offset:-3px}
+.nav-btn span.icon{width:30px;height:30px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:17px}
+.n1{background:linear-gradient(135deg,#188af5,#22b7ee)} .n2{background:linear-gradient(135deg,#24ad72,#55d391)}
+.n3{background:linear-gradient(135deg,#ff9b22,#ffc23d)} .n4{background:linear-gradient(135deg,#875ce3,#b077f4)}
+.n5{background:linear-gradient(135deg,#ff7437,#ff9a2f)} .n6{background:linear-gradient(135deg,#ee4d9a,#ff74b6)}
+.n7{background:linear-gradient(135deg,#20a7ad,#39c7c7)} .n8{background:linear-gradient(135deg,#7258cc,#967fec)}
+.sidebar-note{
+  margin-top:auto;padding:14px;border-radius:18px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);font-size:12px;line-height:1.5;color:#d9edff
+}
+.phase{margin-top:8px;padding:11px;border-radius:16px;background:#103e7a;text-align:center;font-size:17px;font-weight:900}
+.main{height:100%;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0}
+.stage{position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:22px 26px 34px;scroll-padding-bottom:110px}
+.screen.active{display:block}
+.screen.s-home{background:linear-gradient(135deg,#f0f8ff 0%,#fff8eb 48%,#f6efff 100%)}
+.screen.s-loop{background:linear-gradient(135deg,#ecfff4,#f9fff1)}
+.screen.s-if{background:linear-gradient(135deg,#fff9e6,#fff2ea)}
+.screen.s-op{background:linear-gradient(135deg,#f7f0ff,#eef7ff)}
+.screen.s-challenge{background:linear-gradient(135deg,#fff2f5,#fff9eb)}
+.screen.s-build{background:linear-gradient(135deg,#eef8ff,#edfdfb)}
+.screen.s-quiz{background:linear-gradient(135deg,#fff0f7,#f7f0ff)}
+.screen.s-reflect{background:linear-gradient(135deg,#f4f1ff,#eefcff)}
+.content{max-width:1360px;margin:auto}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}
+.kicker{font-size:14px;font-weight:900;color:#55708c;text-transform:uppercase;letter-spacing:.08em}
+h1,h2,h3,p{margin-top:0}
+h2{font-size:clamp(34px,4vw,58px);line-height:1.05;margin-bottom:7px;letter-spacing:-1.2px}
+.subtitle{font-size:clamp(16px,1.55vw,22px);line-height:1.5;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid var(--border);padding:8px 13px;font-weight:900;box-shadow:0 6px 16px rgba(32,78,120,.08)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:rgba(255,255,255,.93);border:1px solid rgba(206,225,241,.95);border-radius:24px;padding:20px;
+  box-shadow:var(--shadow)
+}
+.card h3{font-size:clamp(21px,2vw,29px);margin-bottom:9px}
+.card p,.card li{font-size:clamp(15px,1.35vw,20px);line-height:1.55}
+.hero{min-height:100%;display:grid;grid-template-columns:1.02fr .98fr;gap:22px;align-items:center;max-width:1360px;margin:auto}
+.hero-copy{padding:28px 10px 28px 20px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #dfeaf5;padding:9px 13px;border-radius:999px;font-weight:900;color:#39516a;box-shadow:0 8px 20px rgba(34,73,111,.08)}
+.hero h1{font-size:clamp(48px,6.8vw,94px);line-height:.93;margin:18px 0 14px;letter-spacing:-3px;color:#502bbb}
+.hero h1 .a{color:#0ca8af}.hero h1 .b{color:#fa7b19}.hero h1 .c{color:#39b762}
+.hero-lead{font-size:clamp(18px,1.8vw,25px);line-height:1.55;color:#52677d;max-width:760px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;border-radius:16px;padding:13px 18px;min-height:48px;color:#fff;font-weight:950;box-shadow:0 10px 20px rgba(38,89,132,.16)}
+.btn.blue{background:linear-gradient(135deg,#128af0,#25c1e6)} .btn.green{background:linear-gradient(135deg,#2fb66e,#6bd553)}
+.btn.orange{background:linear-gradient(135deg,#ff8528,#ffb026)} .btn.purple{background:linear-gradient(135deg,#8259de,#aa70f1)}
+.btn.gray{background:#eff5fa;color:#36536d;border:1px solid #d7e5f1;box-shadow:none}
+.hero-art{
+  position:relative;min-height:550px;border-radius:32px;overflow:hidden;background:#fff;border:1px solid #d9e8f5;
+  box-shadow:0 24px 60px rgba(54,76,117,.22)
+}
+.hero-art img{width:100%;height:100%;min-height:550px;object-fit:cover;display:block}
+.hero-overlay{
+  position:absolute;left:20px;right:20px;bottom:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.8)
+}
+.hero-overlay strong{font-size:18px}.hero-overlay div:last-child{font-size:13px;color:#5d7082;line-height:1.45}
+.cat-bubble{width:80px;height:80px;flex:0 0 80px}
+.block{
+  display:block;width:max-content;max-width:100%;padding:12px 16px;border-radius:12px;color:#fff;font-weight:950;margin:8px 0;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.12);font-size:clamp(15px,1.35vw,20px)
+}
+.event{background:#f0ba27;color:#1c2530}.control{background:var(--control)}.motion{background:var(--motion)}
+.looks{background:var(--looks)}.sense{background:var(--sense)}.operator{background:var(--operator)}
+.indent{margin-left:28px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.compare-card{border-radius:20px;padding:17px;border:2px solid #dde9ef;background:#fff}
+.compare-card.if{border-color:#8fd880;background:#f7fff3}.compare-card.ifelse{border-color:#ffc267;background:#fffaf0}
+.compare-title{font-size:22px;font-weight:1000;margin-bottom:7px}.green-text{color:#239653}.orange-text{color:#e36f14}
+.tip{border-radius:17px;padding:13px 15px;background:#fff5c7;border:1px solid #f3d55e;font-size:16px;line-height:1.45}
+.warning{border-radius:17px;padding:13px 15px;background:#e8f8ff;border:1px solid #8fd5f3;font-size:16px;line-height:1.45}
+.sim{background:#f7fbff;border:1px solid #d6e7f4;border-radius:20px;padding:16px}
+.track{position:relative;height:105px;border-radius:18px;background:linear-gradient(90deg,#d9f4ff,#f7f4ff);overflow:hidden;border:2px dashed #90bdd8;margin:13px 0}
+.cat-sprite{position:absolute;left:14px;top:12px;width:78px;height:78px;transition:left .23s ease,transform .25s ease;filter:drop-shadow(0 6px 5px rgba(61,64,88,.18))}
+.sim-controls{display:flex;gap:9px;flex-wrap:wrap}
+.feedback{min-height:52px;margin-top:11px;padding:12px 14px;border-radius:15px;background:#eef6fc;border-left:6px solid #82a9c7;font-size:16px;line-height:1.45}
+.feedback.good{background:#ecfff3;border-left-color:#2eb96a}.feedback.bad{background:#fff1f1;border-left-color:#f1535e}
+.question{font-size:clamp(20px,2vw,29px);font-weight:1000;margin:12px 0}
+.operator-show{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.op-card{border-radius:22px;background:#fff;border:1px solid #ded9f7;padding:20px;text-align:center}
+.op-symbol{font-size:65px;line-height:1;font-weight:1000;color:#47ae50}
+.op-card:nth-child(2) .op-symbol{color:#7a5ede}
+.input{width:100%;padding:15px 16px;border-radius:15px;border:2px solid #d3e3ef;background:#fff;font-size:23px;color:#20384e}
+.task-banner{display:grid;grid-template-columns:90px 1fr;gap:15px;align-items:center;background:linear-gradient(135deg,#ff7744,#ffae3e);color:#fff;border-radius:24px;padding:17px 20px;box-shadow:var(--shadow)}
+.task-banner .cat-bubble{width:76px;height:76px}
+.task-banner h3{font-size:28px;margin:0 0 5px}.task-banner p{margin:0;color:#fff;font-size:16px}
+.steps{counter-reset:steps;display:grid;gap:10px;margin-top:14px}
+.step{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid #e5eaf0;border-radius:17px;padding:12px}
+.step::before{counter-increment:steps;content:counter(steps);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ff8240;color:#fff;font-weight:1000}
+.step strong{display:block;font-size:17px;margin-bottom:3px}.step span{font-size:15px;line-height:1.45;color:#637386}
+.check-list{display:grid;gap:9px;margin-top:10px}
+.check{display:flex;gap:10px;align-items:flex-start;background:#fff8ec;border:1px solid #ffda9d;border-radius:15px;padding:11px 12px;font-size:15px;line-height:1.4}
+.check .mark{width:25px;height:25px;border-radius:50%;background:#37bd73;color:#fff;display:grid;place-items:center;font-weight:1000;flex:0 0 25px}
+.builder{display:grid;grid-template-columns:.95fr 1.05fr;gap:16px}
+.bank,.workspace{min-height:330px;background:#fff;border:2px dashed #b7d5e8;border-radius:22px;padding:15px}
+.tapblock{display:block;width:100%;text-align:left;border:0;padding:12px 14px;border-radius:11px;margin:8px 0;color:#fff;font-weight:950}
+.tapblock.event{color:#20272f}
+.empty{color:#8295a7;text-align:center;padding:68px 12px}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer{background:#fff;border:2px solid #dce7f0;border-radius:16px;padding:15px;text-align:left;color:#294156;font-weight:850;font-size:16px}
+.answer:hover{border-color:#8dc9ec}.answer.correct{background:#e8fff0;border-color:#43bf75}.answer.wrong{background:#fff0f0;border-color:#f26c76}
+.progress{height:11px;background:#e8edf3;border-radius:999px;overflow:hidden;margin-top:11px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#ef5ca6,#9668ed,#27b9cc)}
+.score{font-size:66px;text-align:center;font-weight:1000;color:#7955d5}
+.reflection-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.reflect-btn{
+  min-height:108px;border-radius:20px;border:2px solid #e1dcf6;background:linear-gradient(135deg,#fff,#f8f4ff);
+  color:#3c3564;text-align:left;font-weight:900;font-size:16px;padding:16px;box-shadow:0 8px 20px rgba(76,64,131,.08)
+}
+.reflect-btn:hover{border-color:#9b7ae4;transform:translateY(-1px)}
+.source-card{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 16px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#eaf6ff,#f4fbff);border:1px solid #bcdff5;box-shadow:0 8px 20px rgba(39,102,145,.08)}
+.source-copy{min-width:0}.source-copy strong{display:block;font-size:16px;margin-bottom:3px;color:#164f7a}.source-copy span{display:block;font-size:13px;line-height:1.4;color:#5c7588}
+.source-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 15px;border-radius:14px;background:#126fc2;color:#fff;text-decoration:none;font-weight:950;white-space:nowrap;box-shadow:0 8px 18px rgba(18,111,194,.18)}
+.source-link:hover,.source-link:focus{filter:brightness(1.06);outline:3px solid rgba(18,111,194,.18);outline-offset:2px}
+.footerbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 14px 10px;background:#fff;border-top:1px solid #d9e8f5;min-height:58px}
+.footer-left{font-size:12px;color:#64788a}.footer-nav{display:flex;align-items:center;gap:8px}.page{font-weight:900;color:#50667a;min-width:58px;text-align:center}
+.mini{font-size:12px;color:#6f8295}
+@media(min-width:900px) and (pointer:coarse){
+  :root{--device-safe-bottom:max(84px, env(safe-area-inset-bottom, 0px));}
+  .nav-btn,.btn,.answer,.reflect-btn,.tapblock,.source-link{min-height:52px}
+  .screen{padding-bottom:48px}
+}
+@media(max-width:1050px){
+  .app{grid-template-columns:195px 1fr}.sidebar{padding:14px 9px}.brand-title{font-size:25px}.nav-btn{font-size:13px;padding:8px}
+  .hero{grid-template-columns:1fr}.hero-art{min-height:390px}.hero-art img{min-height:390px}
+  .grid3{grid-template-columns:1fr}.compare,.grid2,.builder{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  html,body{overflow:auto}.app{height:auto;min-height:100%;display:block}.sidebar{position:sticky;top:0;height:auto;display:block;padding:10px;z-index:30}
+  .brand,.sidebar-note,.phase{display:none}.nav-list{display:flex;overflow-x:auto;gap:7px}.nav-btn{min-width:145px;min-height:44px;flex:0 0 auto}
+  .main{height:calc(100dvh - 64px - var(--device-safe-bottom));min-height:560px}.screen{padding:14px 14px 28px}.hero-copy{padding:10px}.hero h1{font-size:51px}.reflection-grid,.answer-grid,.operator-show{grid-template-columns:1fr}
+  .source-card{align-items:stretch;flex-direction:column}.source-link{width:100%}
+  .footer-left{display:none}.footerbar{padding:7px 9px}.footer-nav{display:grid;grid-template-columns:1fr 52px 1fr 48px;width:100%;gap:6px}.footer-nav .btn{padding:10px 8px;min-height:46px}.page{align-self:center}
+}
+@media(max-width:430px){
+  .nav-btn{min-width:132px}.footer-nav{grid-template-columns:1fr 44px 1fr 44px}.footer-nav .btn{font-size:12px}.page{font-size:12px;min-width:44px}
+}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="brand"><div class="crest" aria-hidden="true">✓</div><div><small>PEMILIHAN KETUA & WAKIL KETUA OSIS</small><strong>UPTD SMPN 2 TOPOYO · 2026</strong></div></div>
-  <div class="status" id="modeBadge">MEMUAT...</div>
-</header>
-<main class="wrap">
-  <section class="hero" aria-label="Judul aplikasi"><div class="eyebrow">SUARA KITA · MASA DEPAN SEKOLAH</div><h1>Suaramu Menentukan<br>Masa Depan OSIS</h1><p>Pemilihan Ketua dan Wakil Ketua OSIS UPTD SMPN 2 Topoyo 2026/2027</p></section>
-  <div class="error hidden" id="topError" role="alert"></div>
+<div class="app">
 
-  <section class="stage" id="screenLogin" aria-labelledby="titleLogin">
-    <h2 id="titleLogin">Masuk sebagai Pemilih</h2><p class="intro">Gunakan username dan password yang tertera pada kartu pemilih Anda.</p>
-    <form id="loginForm" autocomplete="off">
-      <label class="field">Username<input id="username" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="contoh: k701" required maxlength="30"></label>
-      <label class="field">Password<input id="password" type="password" autocomplete="off" spellcheck="false" placeholder="masukkan password" required maxlength="100"></label>
-      <div class="error hidden" id="loginError" role="alert"></div>
-      <button class="primary wfull" id="loginBtn" type="submit">MASUK KE E-VOTE →</button>
-    </form>
-    <div class="tip"><span aria-hidden="true">🔒</span><span><b>1 akun = 1 suara.</b> Pastikan kartu login Anda sesuai. Jangan membagikan password kepada pemilih lain.</span></div>
-  </section>
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-title"><span class="y">KODE</span><span class="c">-</span><span class="g">AKTIF</span></div>
+    <div class="brand-sub">Belajar coding itu seru: lihat, sentuh, coba, perbaiki.</div>
+  </div>
 
-  <section class="stage identity hidden" id="screenIdentity" aria-labelledby="titleIdentity">
-    <div class="identityIcon" aria-hidden="true">👤</div><div class="label">KONFIRMASI IDENTITAS PEMILIH</div>
-    <div class="person" id="displayName"></div><span class="tag" id="displayClass"></span>
-    <div class="detail"><div><span>Username</span><b id="displayUser"></b></div><div><span>Status hak suara</span><b>Siap memilih</b></div></div>
-    <p class="intro" style="margin-bottom:20px">Pastikan nama di atas adalah milik Anda sebelum melanjutkan.</p>
-    <div class="actions"><button class="secondary" id="wrongBtn" type="button">BUKAN SAYA</button><button class="primary" id="continueBtn" type="button">BENAR, LANJUT MEMILIH →</button></div>
-  </section>
+  <nav class="nav-list">
+    <button class="nav-btn n1 active" onclick="go(0)"><span class="icon">⌂</span>1. Beranda</button>
+    <button class="nav-btn n2" onclick="go(1)"><span class="icon">↻</span>2. Perulangan</button>
+    <button class="nav-btn n3" onclick="go(2)"><span class="icon">⑂</span>3. Percabangan</button>
+    <button class="nav-btn n4" onclick="go(3)"><span class="icon">＋</span>4. Operator</button>
+    <button class="nav-btn n5" onclick="go(4)"><span class="icon">👥</span>5. Tantangan</button>
+    <button class="nav-btn n7" onclick="go(5)"><span class="icon">🧩</span>6. Susun Kode</button>
+    <button class="nav-btn n6" onclick="go(6)"><span class="icon">?</span>7. Kuis</button>
+    <button class="nav-btn n8" onclick="go(7)"><span class="icon">✦</span>8. Refleksi</button>
+  </nav>
 
-  <section class="ballot hidden" id="screenBallot" aria-labelledby="titleBallot">
-    <div class="ballotHead"><div><h2 id="titleBallot">Pilih Pasangan Calon</h2><p class="intro" style="margin-bottom:0">Cermati nama kandidat. Setiap pemilih hanya dapat memilih satu paslon.</p></div><span class="pill" id="voterBadge">PEMILIH TERVERIFIKASI</span></div>
-    <div class="grid" id="candidateGrid"></div>
-    <p class="notice">Keputusan final setelah tombol <b>YA, KIRIM SUARA</b> ditekan. Pilihan tidak bisa diubah setelah suara tersimpan.</p>
-  </section>
+  <div class="sidebar-note">
+    <strong>KODE-AKTIF</strong><br>
+    Bahan ajar web interaktif untuk memahami logika pemrograman visual secara sederhana dan menyenangkan.
+    <div style="margin-top:10px"><a class="source-link" style="width:100%;background:#fff;color:#0b4f87;box-shadow:none" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">📘 Ruang Murid ↗</a></div>
+    <div class="phase">Fase D</div>
+  </div>
+</aside>
 
-  <section class="stage success hidden" id="screenSuccess" aria-labelledby="titleSuccess">
-    <div class="successIcon" aria-hidden="true">✓</div><h2 id="titleSuccess">Terima Kasih!</h2>
-    <p class="message" id="successMessage">Suara Anda berhasil disimpan.<br>Anda telah menggunakan hak pilih dalam pemilihan OSIS 2026.</p>
-    <div class="timer">Kembali ke login dalam <span id="seconds">6</span> detik</div>
-    <button class="primary wfull" type="button" id="doneBtn">SELESAI · KEMBALI KE LOGIN</button>
-  </section>
-  <footer class="foot">© 2026 UPTD SMPN 2 Topoyo · Panitia Pemilihan OSIS<br>Gunakan perangkat sekolah secara bergantian dengan pendampingan panitia.</footer>
+<div class="main">
+<main class="stage">
+
+<section class="screen s-home active">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="badge">💡 Koding dan Kecerdasan Artifisial • Fase D</span>
+      <h1><span class="a">KODE</span><span class="b">-</span><span class="c">AKTIF</span></h1>
+      <p class="hero-lead">Hari ini kita belajar tiga ide penting dalam pemrograman visual: <b>perulangan</b>, <b>percabangan</b>, dan <b>operator</b>. Tidak perlu menghafal. Kita akan melihat hasilnya, menyentuh pilihan, mencoba kode, lalu memperbaiki jika masih salah.</p>
+      <div class="grid3" style="margin-top:18px">
+        <div class="card"><h3 style="color:#269456">↻ Perulangan</h3><p>Mengulangi perintah beberapa kali atau terus-menerus.</p></div>
+        <div class="card"><h3 style="color:#e57b16">⑂ Percabangan</h3><p>Membuat program memilih tindakan berdasarkan kondisi.</p></div>
+        <div class="card"><h3 style="color:#7557c9">＋ Operator</h3><p>Menghitung atau membandingkan nilai.</p></div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn blue" onclick="go(1)">Mulai dari Perulangan →</button>
+        <button class="btn purple" onclick="go(6)">Coba Kuis</button>
+        <a class="source-link" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">📘 Ruang Murid ↗</a>
+        <button class="btn gray" onclick="toggleFull()">⛶ Layar Penuh</button>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img src="assets/hero-kode-aktif-3d.jpg" alt="Ilustrasi 3D dua murid belajar pemrograman dengan laptop di kelas">
+      <div class="hero-overlay">
+        <div class="cat-bubble" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+              <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+              <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+              <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+              <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+              <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+              <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+            </g>
+          </svg>
+        </div>
+        <div><strong>Ayo belajar dengan mencoba!</strong><br>Catatan: jika program salah, itu bukan gagal. Itu kesempatan untuk melakukan debugging.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-loop">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 1</div><h2>Perulangan (Loop)</h2><div class="subtitle">Perintah yang dilakukan berulang-ulang.</div></div>
+      <span class="pill">↻ repeat & forever</span>
+    </div>
+    <div class="source-card">
+      <div class="source-copy"><strong>📘 Sumber belajar pendamping — Ruang Murid</strong><span>Pemrograman Dasar pada Pemrograman Visual Vol. 1. Gunakan sebagai rujukan konsep sebelum atau saat mencoba aktivitas KODE-AKTIF.</span></div>
+      <a class="source-link" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">Buka Ruang Murid ↗</a>
+    </div>
+
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Bandingkan dua jenis perulangan</h3>
+        <div class="block control">ulangi 10 kali</div>
+        <div class="block motion indent">gerak 5 langkah</div>
+        <p><b>Repeat 10</b>: perintah di dalamnya dijalankan tepat 10 kali, kemudian berhenti.</p>
+
+        <div class="block control">selamanya</div>
+        <div class="block motion indent">gerak 5 langkah</div>
+        <p><b>Forever</b>: perintah di dalamnya terus dijalankan sampai program dihentikan.</p>
+
+        <div class="warning"><b>Jangan tertukar:</b> perulangan dipakai untuk <b>mengulang</b>. Blok <b>jika...maka</b> bukan perulangan; blok itu termasuk <b>percabangan</b> karena memeriksa kondisi.</div>
+      </div>
+
+      <div class="card">
+        <h3>Coba langsung</h3>
+        <div class="sim">
+          <div class="track">
+            <div id="loopCat" class="cat-sprite">
+              <svg viewBox="0 0 120 120">
+                <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+                  <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+                  <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+                  <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+                  <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+                  <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+                  <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="sim-controls">
+            <button class="btn blue" onclick="runRepeat()">▶ Repeat 10</button>
+            <button class="btn green" onclick="runForever()">▶ Forever</button>
+            <button class="btn orange" onclick="stopLoop()">■ Stop</button>
+          </div>
+          <div id="loopFb" class="feedback">Sentuh Repeat 10 dan Forever secara bergantian. Amati: kapan kucing berhenti?</div>
+        </div>
+        <div class="question">Diskusikan: kapan kita memilih Repeat, dan kapan kita memilih Forever?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-if">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 2</div><h2>Percabangan: “Jika–Maka” dan “Jika–Maka–Jika Tidak”</h2><div class="subtitle">Percabangan membuat program memilih tindakan berdasarkan sebuah kondisi.</div></div>
+      <span class="pill">⑂ if & if–else</span>
+    </div>
+    <div class="source-card">
+      <div class="source-copy"><strong>📘 Sumber belajar pendamping — Ruang Murid</strong><span>Pemrograman Dasar pada Pemrograman Visual Vol. 1. Gunakan sebagai rujukan konsep sebelum atau saat mencoba aktivitas KODE-AKTIF.</span></div>
+      <a class="source-link" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">Buka Ruang Murid ↗</a>
+    </div>
+
+
+    <div class="compare">
+      <div class="compare-card if">
+        <div class="compare-title green-text">A. Jika ... Maka (IF)</div>
+        <p>Program <b>memeriksa satu kondisi</b>. Jika kondisi benar, aksi dijalankan. Jika kondisi salah, tidak ada aksi alternatif.</p>
+        <div class="block control">jika &lt;menyentuh pinggir?&gt; maka</div>
+        <div class="block motion indent">putar 15 derajat</div>
+        <div class="tip"><b>Contoh:</b> Jika kucing menyentuh pinggir, maka kucing berputar. Jika belum menyentuh pinggir, tidak ada perintah tambahan.</div>
+      </div>
+
+      <div class="compare-card ifelse">
+        <div class="compare-title orange-text">B. Jika ... Maka ... Jika Tidak (IF–ELSE)</div>
+        <p>Program memilih <b>dua kemungkinan</b>: aksi untuk kondisi benar dan aksi lain untuk kondisi salah.</p>
+        <div class="block control">jika &lt;jawaban = 8&gt; maka</div>
+        <div class="block looks indent">katakan “Benar!”</div>
+        <div class="block control indent">jika tidak</div>
+        <div class="block looks indent">katakan “Coba lagi!”</div>
+        <div class="tip"><b>Ingat:</b> IF punya satu jalan tindakan. IF–ELSE menyediakan dua jalan tindakan.</div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Prediksi perilaku kucing</h3>
+        <div class="sim">
+          <div class="track">
+            <div id="ifCat" class="cat-sprite">
+              <svg viewBox="0 0 120 120">
+                <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+                  <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+                  <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+                  <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+                  <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+                  <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+                  <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="sim-controls">
+            <button class="btn orange" onclick="runIfDemo()">Jalankan IF</button>
+            <button class="btn gray" onclick="resetIfDemo()">Ulangi</button>
+          </div>
+          <div id="ifFb" class="feedback">Apa yang akan dilakukan kucing ketika menyentuh pinggir?</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Cek pemahaman cepat</h3>
+        <p><b>Situasi:</b> Jika nilai ≥ 75, tampilkan “Tuntas”. Jika tidak, tampilkan “Belajar lagi”.</p>
+        <div class="question">Blok mana yang paling tepat?</div>
+        <div class="sim-controls">
+          <button class="btn gray" onclick="branchCheck(false)">Jika–Maka saja</button>
+          <button class="btn green" onclick="branchCheck(true)">Jika–Maka–Jika Tidak</button>
+        </div>
+        <div id="branchFb" class="feedback">Pilih jawaban, lalu jelaskan alasanmu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-op">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Konsep 3</div><h2>Operator</h2><div class="subtitle">Hari ini fokus pada dua operator sederhana: penjumlahan (+) dan pembanding (=).</div></div>
+      <span class="pill">＋ dan =</span>
+    </div>
+    <div class="source-card">
+      <div class="source-copy"><strong>📘 Sumber belajar pendamping — Ruang Murid</strong><span>Pemrograman Dasar pada Pemrograman Visual Vol. 1. Gunakan sebagai rujukan konsep sebelum atau saat mencoba aktivitas KODE-AKTIF.</span></div>
+      <a class="source-link" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">Buka Ruang Murid ↗</a>
+    </div>
+
+
+    <div class="grid2">
+      <div class="card">
+        <div class="operator-show">
+          <div class="op-card"><div class="op-symbol">+</div><h3>Penjumlahan</h3><p>Menghitung dua nilai. Contoh: 5 + 3 menghasilkan 8.</p></div>
+          <div class="op-card"><div class="op-symbol">=</div><h3>Pembanding</h3><p>Memeriksa apakah dua nilai sama. Hasilnya benar atau salah.</p></div>
+        </div>
+
+        <div style="margin-top:15px">
+          <div class="block sense">tanyakan “Berapa hasil 5 + 3?” dan tunggu</div>
+          <div class="block control">jika &lt;jawaban = (5 + 3)&gt; maka</div>
+          <div class="block looks indent">katakan “Benar!”</div>
+          <div class="block control">jika tidak</div>
+          <div class="block looks indent">katakan “Coba lagi!”</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Coba operator secara langsung</h3>
+        <div class="question">Berapa hasil 5 + 3?</div>
+        <input id="mathInput" class="input" inputmode="numeric" placeholder="Ketik jawaban ...">
+        <div class="sim-controls" style="margin-top:11px">
+          <button class="btn purple" onclick="checkMath()">Periksa dengan =</button>
+          <button class="btn gray" onclick="document.getElementById('mathInput').value=''">Hapus</button>
+        </div>
+        <div id="mathFb" class="feedback">Program akan menghitung 5 + 3, kemudian membandingkan jawabanmu dengan hasil tersebut.</div>
+        <div class="tip" style="margin-top:12px"><b>Pikirkan:</b> operator + melakukan perhitungan. Operator = melakukan perbandingan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-challenge">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Mini Proyek Kelompok</div><h2>Tantangan: “Kucing Cerdas”</h2><div class="subtitle">Ikuti urutan persis di bawah. Jangan menambah fitur sebelum program dasar berhasil.</div></div>
+      <span class="pill">👥 3–4 murid / Chromebook</span>
+    </div>
+
+    
+    <div class="source-card">
+      <div class="source-copy"><strong>📘 Sumber belajar pendamping — Ruang Murid</strong><span>Pemrograman Dasar pada Pemrograman Visual Vol. 1. Gunakan sebagai rujukan konsep sebelum atau saat mencoba aktivitas KODE-AKTIF.</span></div>
+      <a class="source-link" href="https://murid.kemendikdasmen.go.id/sumber-belajar/materi/interaktif/pemograman-dasar-pada-pemograman-visual-vol-1-8a5e2ceb-8dc5-40ac-a60d-44296ce68e95" target="_blank" rel="noopener noreferrer">Buka Ruang Murid ↗</a>
+    </div>
+
+    <div class="task-banner">
+      <div class="cat-bubble">
+        <svg viewBox="0 0 120 120">
+          <g stroke="#202733" stroke-width="4" stroke-linejoin="round">
+            <path fill="#ff9d21" d="M31 34 24 9l24 16c7-3 17-3 24 0L96 10 90 37c7 7 11 17 11 28 0 25-18 43-42 43S18 90 18 65c0-13 5-23 13-31Z"/>
+            <path fill="#fff" d="M37 69c4-11 14-17 24-17s21 7 25 18c3 10-6 23-25 23-20 0-28-14-24-24Z"/>
+            <ellipse fill="#fff" cx="44" cy="49" rx="10" ry="14"/><ellipse fill="#fff" cx="72" cy="49" rx="10" ry="14"/>
+            <circle fill="#202733" cx="47" cy="51" r="4"/><circle fill="#202733" cx="69" cy="51" r="4"/>
+            <path fill="#202733" d="m55 64 7 0-3 6Z"/>
+            <path fill="none" d="M58 69c-3 7-9 8-15 5M59 69c3 7 10 8 16 4M39 66 17 62M39 72 16 75M78 66l22-5M78 72l23 4"/>
+          </g>
+        </svg>
+      </div>
+      <div><h3>Target akhir sangat jelas</h3><p>Kucing bertanya soal 5 + 3, memberi respons benar/salah, kemudian bergerak terus dan bereaksi ketika menyentuh pinggir.</p></div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Langkah kerja — ikuti satu per satu</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Buka Scratch dan gunakan sprite kucing.</strong><span>Jangan mengganti sprite dulu agar semua kelompok bekerja dengan target yang sama.</span></div></div>
+          <div class="step"><div><strong>Pasang blok “ketika bendera hijau diklik”.</strong><span>Semua perintah dimulai dari blok ini.</span></div></div>
+          <div class="step"><div><strong>Buat kucing bertanya: “Berapa hasil 5 + 3?”</strong><span>Gunakan blok <i>ask ... and wait</i>.</span></div></div>
+          <div class="step"><div><strong>Periksa jawaban dengan IF–ELSE.</strong><span>Gunakan kondisi <b>jawaban = (5 + 3)</b>. Jika benar, katakan “Benar!”. Jika tidak, katakan “Coba lagi!”.</span></div></div>
+          <div class="step"><div><strong>Setelah memberi respons, buat kucing bergerak terus.</strong><span>Tambahkan <b>forever</b> lalu <b>move 10 steps</b>.</span></div></div>
+          <div class="step"><div><strong>Di dalam forever, tambahkan kondisi pinggir.</strong><span>Jika menyentuh pinggir, gunakan <b>if on edge, bounce</b> atau perintah berbalik yang tersedia.</span></div></div>
+          <div class="step"><div><strong>Tekan bendera hijau dan uji dua kali.</strong><span>Uji sekali dengan jawaban benar dan sekali dengan jawaban salah.</span></div></div>
+          <div class="step"><div><strong>Jika belum berhasil, debugging.</strong><span>Periksa urutan blok. Ubah satu bagian saja, lalu uji kembali.</span></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Program kalian harus memenuhi 6 cek ini</h3>
+        <div class="check-list">
+          <div class="check"><span class="mark">✓</span><span>Kucing menanyakan <b>5 + 3</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kondisi menggunakan <b>operator +</b> dan <b>operator =</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Jawaban benar menghasilkan pesan <b>“Benar!”</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Jawaban salah menghasilkan pesan <b>“Coba lagi!”</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kucing bergerak terus menggunakan <b>forever</b>.</span></div>
+          <div class="check"><span class="mark">✓</span><span>Kucing bereaksi saat menyentuh pinggir.</span></div>
+        </div>
+
+        <div class="tip" style="margin-top:14px"><b>Pembagian peran:</b> operator menyusun blok, pembaca langkah membaca instruksi, pemeriksa kode mengecek urutan, dan penyaji menjelaskan hasil. Setelah ±8 menit, ganti operator.</div>
+        <div class="warning" style="margin-top:11px"><b>Jika sudah berhasil lebih cepat:</b> baru boleh mengganti angka 5 + 3 menjadi soal lain. Jangan menambah skor/level sebelum program inti benar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-build">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Latihan PID</div><h2>Susun Kode Gerak Kucing</h2><div class="subtitle">Sentuh blok sesuai urutan agar kucing bergerak terus dan bereaksi saat menyentuh pinggir.</div></div>
+      <span class="pill">🧩 drag tidak perlu — cukup sentuh</span>
+    </div>
+
+    <div class="builder">
+      <div class="bank">
+        <h3>Bank Blok</h3>
+        <button class="tapblock event" data-id="event" onclick="addBlock(this)">ketika bendera hijau diklik</button>
+        <button class="tapblock control" data-id="forever" onclick="addBlock(this)">selamanya</button>
+        <button class="tapblock motion" data-id="move" onclick="addBlock(this)">gerak 10 langkah</button>
+        <button class="tapblock control" data-id="ifedge" onclick="addBlock(this)">jika menyentuh pinggir maka</button>
+        <button class="tapblock motion" data-id="bounce" onclick="addBlock(this)">berbalik / bounce</button>
+        <div class="tip" style="margin-top:12px"><b>Petunjuk:</b> mulai dari event → ulangi terus → gerak → cek pinggir → bereaksi.</div>
+      </div>
+
+      <div class="workspace">
+        <h3>Area Kerja</h3>
+        <div id="workspace"><div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div></div>
+        <div class="sim-controls" style="margin-top:11px">
+          <button class="btn green" onclick="checkBuild()">Periksa Susunan</button>
+          <button class="btn orange" onclick="undoBlock()">Batalkan Terakhir</button>
+          <button class="btn gray" onclick="clearBuild()">Kosongkan</button>
+        </div>
+        <div id="buildFb" class="feedback">Susun 5 blok. Jika salah, gunakan petunjuk lalu coba lagi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-quiz">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Asesmen Interaktif</div><h2>Kuis Cepat</h2><div class="subtitle">Ada 10 pertanyaan. Pilih satu jawaban terbaik dan baca umpan baliknya.</div></div>
+      <span class="pill"><span id="quizPos">1</span>/10</span>
+    </div>
+
+    <div class="card" style="max-width:1050px;margin:auto">
+      <div id="quizQuestion" class="question"></div>
+      <div id="quizAnswers" class="answer-grid"></div>
+      <div id="quizFb" class="feedback">Pilih satu jawaban.</div>
+      <div class="progress"><div id="quizProgress"></div></div>
+      <div class="sim-controls" style="margin-top:12px">
+        <button id="quizNext" class="btn purple" onclick="nextQuestion()" style="display:none">Soal Berikutnya →</button>
+        <button class="btn gray" onclick="restartQuiz()">Ulangi Kuis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen s-reflect">
+  <div class="content">
+    <div class="topline">
+      <div><div class="kicker">Penutup</div><h2>Refleksi Pembelajaran</h2><div class="subtitle">Pilih satu pertanyaan, jawab dengan kalimatmu sendiri, lalu dengarkan jawaban teman.</div></div>
+      <span class="pill">✦ 8 pertanyaan refleksi</span>
+    </div>
+
+    <div class="reflection-grid">
+      <button class="reflect-btn" onclick="showReflection(0)">1. Apa perbedaan <b>Repeat</b> dan <b>Forever</b>? Beri satu contoh.</button>
+      <button class="reflect-btn" onclick="showReflection(1)">2. Apa perbedaan <b>Jika–Maka</b> dan <b>Jika–Maka–Jika Tidak</b>?</button>
+      <button class="reflect-btn" onclick="showReflection(2)">3. Apa fungsi operator <b>+</b> dan operator <b>=</b>?</button>
+      <button class="reflect-btn" onclick="showReflection(3)">4. Bagian kode apa yang paling mudah kamu pahami? Mengapa?</button>
+      <button class="reflect-btn" onclick="showReflection(4)">5. Kesalahan apa yang ditemukan kelompokmu saat debugging?</button>
+      <button class="reflect-btn" onclick="showReflection(5)">6. Bagaimana kelompokmu memperbaiki program yang belum berhasil?</button>
+      <button class="reflect-btn" onclick="showReflection(6)">7. Bagaimana pembagian peran membantu kelompokmu bekerja?</button>
+      <button class="reflect-btn" onclick="showReflection(7)">8. Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi?</button>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Pertanyaan yang dipilih</h3>
+      <div id="reflectionFb" class="feedback">Sentuh salah satu kartu pertanyaan di atas.</div>
+      <div class="grid3" style="margin-top:14px">
+        <button class="btn green" onclick="confidence('Sudah paham dan bisa menjelaskan.')">🙂 Sudah paham</button>
+        <button class="btn orange" onclick="confidence('Mulai paham tetapi masih perlu latihan.')">😐 Perlu latihan</button>
+        <button class="btn purple" onclick="confidence('Saya ingin bertanya lagi sebelum lanjut.')">🙋 Ingin bertanya</button>
+      </div>
+      <div id="confidenceFb" class="feedback">Pilih juga tingkat pemahamanmu.</div>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<div class="overlay hidden" id="overlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
-  <div class="modal"><h2 id="confirmTitle">Konfirmasi Pilihan</h2><p>Apakah Anda yakin ingin memberikan suara kepada pasangan calon berikut?</p>
-    <div class="chosen" id="chosenName"></div><div class="warn">Setelah dikirim, pilihan tidak dapat diubah. Pastikan Anda sudah yakin.</div>
-    <div class="actions"><button class="secondary" id="cancelVote" type="button">BATAL</button><button class="primary" id="confirmVote" type="button">YA, KIRIM SUARA</button></div>
+<footer class="footerbar">
+  <div class="footer-left">KODE-AKTIF • Koding dan Kecerdasan Artifisial • Fase D</div>
+  <div class="footer-nav">
+    <button class="btn gray" onclick="prev()">← Sebelumnya</button>
+    <span class="page"><span id="pageNow">1</span>/8</span>
+    <button class="btn blue" onclick="next()">Berikutnya →</button>
+    <button class="btn gray" onclick="toggleFull()">⛶</button>
   </div>
+</footer>
 </div>
-<script>
-(function(){
-  'use strict';
-  const $ = (id) => document.getElementById(id);
-  const screens = ['screenLogin','screenIdentity','screenBallot','screenSuccess'];
-  let app = {mode:'TUTUP',kandidat:[],session:null,paslon:null,secondsTimer:null,busy:false};
+</div>
 
-  function show(id){ screens.forEach(s=>$(s).classList.toggle('hidden',s!==id)); window.scrollTo({top:0,behavior:'instant'}); }
-  function notice(id,msg){$(id).textContent=msg||'';$(id).classList.toggle('hidden',!msg);}
-  function busy(btn,val,label){btn.disabled=val;btn.innerHTML=val?'<span class="spinner" aria-hidden="true"></span>Memproses...':label;}
-  function call(server,...args){return new Promise((resolve,reject)=>{
-    if(!window.google || !google.script || !google.script.run){reject(new Error('Aplikasi harus dibuka dari URL Google Apps Script.'));return;}
-    google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[server](...args);
-  });}
-  function showMode(){
-    $('modeBadge').textContent=app.mode==='UJI'?'MODE SIMULASI':app.mode==='BUKA'?'PEMILIHAN DIBUKA':'PEMILIHAN DITUTUP';
-    $('modeBadge').className='status '+(app.mode==='UJI'?'test':app.mode==='BUKA'?'open':'');
-    $('loginBtn').disabled=app.mode==='TUTUP';
-    notice('topError',app.mode==='UJI'?'MODE SIMULASI: Suara percobaan tidak dihitung dalam pemilihan resmi.':app.mode==='TUTUP'?'Pemilihan belum dibuka atau sudah berakhir. Hubungi panitia.':'');
-    if (app.mode==='UJI') $('topError').style.cssText='background:#fff7e7;border-color:#f8e1a9;color:#98630a';
-    else $('topError').style.cssText='';
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+const navButtons=[...document.querySelectorAll('.nav-btn')];
+let current=0, loopTimer=null, built=[];
+
+// Ruang aman untuk PID/tablet yang memiliki bilah kontrol di bagian bawah.
+function updateDeviceSafeArea(){
+  const touch = (navigator.maxTouchPoints || 0) > 0 || window.matchMedia?.('(pointer: coarse)').matches;
+  document.body.classList.remove('pid-touch','compact-touch');
+  if(touch && window.innerWidth >= 900) document.body.classList.add('pid-touch');
+  else if(touch) document.body.classList.add('compact-touch');
+}
+updateDeviceSafeArea();
+window.addEventListener('resize', updateDeviceSafeArea);
+window.visualViewport?.addEventListener('resize', updateDeviceSafeArea);
+
+function go(i){
+  current=Math.max(0,Math.min(screens.length-1,i));
+  screens.forEach((s,n)=>s.classList.toggle('active',n===current));
+  navButtons.forEach((b,n)=>b.classList.toggle('active',n===current));
+  document.getElementById('pageNow').textContent=current+1;
+  screens[current].scrollTop=0;
+}
+function next(){go(current+1)}
+function prev(){go(current-1)}
+function toggleFull(){
+  if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+  else document.exitFullscreen?.();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')next();
+  if(e.key==='ArrowLeft')prev();
+});
+
+// Loop demo
+function stopLoop(){
+  if(loopTimer){clearInterval(loopTimer);loopTimer=null}
+}
+function runRepeat(){
+  stopLoop();
+  const cat=document.getElementById('loopCat'), track=cat.parentElement, fb=document.getElementById('loopFb');
+  let n=0,x=14; cat.style.left='14px'; cat.style.transform='scaleX(1)';
+  fb.className='feedback'; fb.textContent='Repeat 10 sedang berjalan: hitung gerakannya!';
+  loopTimer=setInterval(()=>{
+    n++; x+=Math.max(19,track.clientWidth/30);
+    cat.style.left=Math.min(x,track.clientWidth-92)+'px';
+    if(n>=10){
+      clearInterval(loopTimer);loopTimer=null;
+      fb.className='feedback good';
+      fb.textContent='Selesai: perintah dijalankan tepat 10 kali, lalu berhenti.';
+    }
+  },230);
+}
+function runForever(){
+  stopLoop();
+  const cat=document.getElementById('loopCat'), track=cat.parentElement, fb=document.getElementById('loopFb');
+  let x=14,d=1; cat.style.left='14px';
+  fb.className='feedback';fb.textContent='Forever berjalan terus. Sentuh Stop jika ingin menghentikan.';
+  loopTimer=setInterval(()=>{
+    const max=track.clientWidth-92;
+    x+=16*d;
+    if(x>=max){x=max;d=-1;cat.style.transform='scaleX(-1)'}
+    if(x<=14){x=14;d=1;cat.style.transform='scaleX(1)'}
+    cat.style.left=x+'px';
+  },150);
+}
+
+// IF demo
+function resetIfDemo(){
+  const cat=document.getElementById('ifCat');
+  cat.style.left='14px';cat.style.transform='rotate(0deg) scaleX(1)';
+  const fb=document.getElementById('ifFb');
+  fb.className='feedback';fb.textContent='Apa yang akan dilakukan kucing ketika menyentuh pinggir?';
+}
+function runIfDemo(){
+  resetIfDemo();
+  const cat=document.getElementById('ifCat'), track=cat.parentElement, fb=document.getElementById('ifFb');
+  let x=14;
+  const t=setInterval(()=>{
+    x+=24;cat.style.left=Math.min(x,track.clientWidth-92)+'px';
+    if(x>=track.clientWidth-92){
+      clearInterval(t);
+      cat.style.transform='rotate(12deg) scaleX(-1)';
+      fb.className='feedback good';
+      fb.textContent='Kondisi BENAR: kucing menyentuh pinggir, maka aksi berbalik dijalankan.';
+    }
+  },175);
+}
+function branchCheck(correct){
+  const fb=document.getElementById('branchFb');
+  if(correct){
+    fb.className='feedback good';
+    fb.textContent='Tepat. Ada dua hasil yang harus ditampilkan, jadi gunakan IF–ELSE.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Karena kondisi benar dan salah sama-sama memiliki aksi, kita memerlukan IF–ELSE.';
   }
-  async function init(){
-    try {let d=await call('dataAwal');app.mode=d.mode;app.kandidat=d.kandidat||[];
-      if(!d.siap){app.mode='TUTUP';notice('topError','Database belum disiapkan. Panitia harus menjalankan menu E-Vote 2026 → Siapkan database dari Spreadsheet.');}
-      if(app.kandidat.length!==3){app.mode='TUTUP';notice('topError','Daftar pasangan calon belum lengkap. Hubungi panitia.');}
-      showMode();
-    }catch(err){app.mode='TUTUP';showMode();notice('topError','Gagal terhubung ke database. Periksa koneksi internet, kemudian muat ulang.');}
+}
+
+// Operators
+function checkMath(){
+  const v=document.getElementById('mathInput').value.trim();
+  const fb=document.getElementById('mathFb');
+  if(v==='8'){
+    fb.className='feedback good';
+    fb.textContent='Benar! 5 + 3 menghasilkan 8, lalu operator = menyatakan jawabanmu sama dengan hasil tersebut.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Hitung dulu 5 + 3, kemudian bandingkan jawabanmu dengan hasilnya.';
   }
-  function clearSession(){
-    if(app.session && app.session.token) call('keluar',app.session.token).catch(()=>{});
-    app.session=null;app.paslon=null;
-    $('loginForm').reset();notice('loginError','');$('overlay').classList.add('hidden');
-    show('screenLogin');$('username').focus();
-  }
-  $('loginForm').addEventListener('submit',async(e)=>{
-    e.preventDefault();if(app.busy || app.mode==='TUTUP')return;
-    const u=$('username').value.toLowerCase().trim();const p=$('password').value;
-    if(!u||!p)return;
-    notice('loginError',''); app.busy=true;busy($('loginBtn'),true,'MASUK KE E-VOTE →');
-    try{
-      const data=await call('loginPemilih',u,p);app.session=data;
-      $('displayName').textContent=data.nama;$('displayClass').textContent=data.kelas;
-      $('displayUser').textContent=data.username;
-      show('screenIdentity');
-    }catch(err){notice('loginError',err&&err.message?err.message:'Login gagal, silakan coba lagi.');}
-    finally{app.busy=false;busy($('loginBtn'),false,'MASUK KE E-VOTE →');}
+}
+
+// Builder
+function addBlock(btn){
+  built.push({
+    id:btn.dataset.id,
+    text:btn.textContent,
+    cls:[...btn.classList].find(c=>['event','control','motion'].includes(c)) || 'motion'
   });
-  $('wrongBtn').addEventListener('click',clearSession);
-  $('continueBtn').addEventListener('click',()=>{
-    if(!app.session) return clearSession();
-    $('voterBadge').textContent='PEMILIH: '+app.session.username;
-    renderCandidates();show('screenBallot');
-  });
-  function renderCandidates(){
-    const grid=$('candidateGrid');grid.replaceChildren();
-    app.kandidat.forEach((c,i)=>{
-      const section=document.createElement('article');section.className='candidate';
-      const portrait=document.createElement('div');portrait.className='portrait';
-      const av=document.createElement('div');av.className='avatar';av.textContent='🗳️';portrait.appendChild(av);
-      if(c.foto && /^https:\/\//.test(c.foto)){
-        const img=document.createElement('img');img.src=c.foto;img.alt='Foto pasangan calon '+c.nomor;img.onerror=()=>img.remove();portrait.appendChild(img);
-      }
-      const badge=document.createElement('div');badge.className='badge';badge.textContent='PASLON '+c.nomor;portrait.appendChild(badge);
-      const label1=document.createElement('p');label1.className='candSubtitle';label1.textContent='Calon Ketua OSIS';
-      const h=document.createElement('h3');h.textContent=c.ketua;
-      const label2=document.createElement('p');label2.className='candSubtitle';label2.textContent='Calon Wakil Ketua OSIS';
-      const w=document.createElement('p');w.className='candWakil';w.textContent=c.wakil;
-      const btn=document.createElement('button');btn.type='button';btn.className='choose';btn.textContent='PILIH PASLON '+c.nomor;
-      btn.addEventListener('click',()=>confirmCandidate(c));
-      section.append(portrait,label1,h,label2,w,btn);grid.appendChild(section);
-    });
+  renderBuild();
+}
+function renderBuild(){
+  const w=document.getElementById('workspace');
+  if(!built.length){
+    w.innerHTML='<div class="empty">Belum ada blok. Sentuh satu blok dari Bank Blok.</div>';
+    return;
   }
-  function confirmCandidate(c){app.paslon=c;$('chosenName').textContent='PASLON '+c.nomor+' · '+c.ketua+' & '+c.wakil;$('overlay').classList.remove('hidden');$('confirmVote').focus();}
-  $('cancelVote').addEventListener('click',()=>{$('overlay').classList.add('hidden');app.paslon=null;});
-  $('confirmVote').addEventListener('click',async()=>{
-    if(app.busy || !app.session || !app.paslon)return;
-    app.busy=true;busy($('confirmVote'),true,'YA, KIRIM SUARA');
-    try{
-      const r=await call('kirimSuara',app.session.token,app.paslon.nomor);
-      $('overlay').classList.add('hidden');
-      $('successMessage').innerHTML=r.uji?'<b>Simulasi berhasil!</b><br>Suara ini tidak masuk hasil resmi.':'<b>Suara Anda berhasil disimpan.</b><br>Terima kasih telah menggunakan hak pilih Anda.';
-      app.session=null;app.paslon=null;show('screenSuccess');beginCount(6);
-    }catch(err){$('overlay').classList.add('hidden');app.paslon=null;
-      notice('topError',(err&&err.message?err.message:'Gagal mengirim suara.')+' Jika ragu apakah suara tersimpan, hubungi panitia.');
-    }finally{app.busy=false;busy($('confirmVote'),false,'YA, KIRIM SUARA');}
-  });
-  function beginCount(n){clearInterval(app.secondsTimer);$('seconds').textContent=n;
-    app.secondsTimer=setInterval(()=>{n--;if(n<=0){clearInterval(app.secondsTimer);clearSession();notice('topError',app.mode==='UJI'?'MODE SIMULASI: Suara percobaan tidak dihitung dalam pemilihan resmi.':'');}
-      else $('seconds').textContent=n;},1000);
+  w.innerHTML=built.map((b,i)=>`<div class="block ${b.cls}" style="${i>=2?'margin-left:24px':''}">${b.text}</div>`).join('');
+}
+function undoBlock(){built.pop();renderBuild()}
+function clearBuild(){
+  built=[];renderBuild();
+  const fb=document.getElementById('buildFb');
+  fb.className='feedback';fb.textContent='Susun 5 blok. Jika salah, gunakan petunjuk lalu coba lagi.';
+}
+function checkBuild(){
+  const target=['event','forever','move','ifedge','bounce'];
+  const ok=JSON.stringify(built.map(x=>x.id))===JSON.stringify(target);
+  const fb=document.getElementById('buildFb');
+  if(ok){
+    fb.className='feedback good';
+    fb.textContent='Susunan benar! Event → Forever → Gerak → Jika menyentuh pinggir → Berbalik.';
+  }else{
+    fb.className='feedback bad';
+    fb.textContent='Belum tepat. Petunjuk: mulai dari event, lalu perulangan, gerak, kondisi, dan aksi.';
   }
-  $('doneBtn').addEventListener('click',()=>{clearInterval(app.secondsTimer);clearSession();});
-  // Tidak memakai localStorage/cookies; setiap tab baru dimulai dari login.
-  init();
-})();
+}
+
+// Quiz
+const quiz=[
+  {
+    q:'Blok apa yang digunakan agar sebuah perintah dijalankan terus-menerus sampai program dihentikan?',
+    a:['Repeat 10','Forever','Jika–Maka','Operator ='], c:1,
+    e:'Forever mengulang perintah tanpa batas sampai program dihentikan.'
+  },
+  {
+    q:'Apa perbedaan utama Repeat 10 dan Forever?',
+    a:['Repeat 10 selalu lebih cepat','Repeat 10 punya jumlah pengulangan tertentu; Forever terus berjalan','Forever hanya berjalan 10 kali','Keduanya sama'], c:1,
+    e:'Repeat memakai jumlah tertentu, sedangkan Forever terus mengulang.'
+  },
+  {
+    q:'Jika sebuah aksi hanya dilakukan ketika kondisi benar, blok yang paling tepat adalah ...',
+    a:['Jika–Maka','Forever','Operator +','Repeat'], c:0,
+    e:'Jika–Maka memeriksa kondisi dan menjalankan aksi hanya ketika kondisi benar.'
+  },
+  {
+    q:'Jika kita ingin aksi A saat kondisi benar dan aksi B saat kondisi salah, kita menggunakan ...',
+    a:['Repeat','Jika–Maka–Jika Tidak','Operator +','Gerak 10 langkah'], c:1,
+    e:'IF–ELSE menyediakan dua jalan: satu untuk benar, satu untuk salah.'
+  },
+  {
+    q:'Operator + digunakan untuk ...',
+    a:['Membandingkan nilai','Menjumlahkan nilai','Mengulang perintah','Memutar sprite'], c:1,
+    e:'Operator + melakukan penjumlahan.'
+  },
+  {
+    q:'Operator = digunakan untuk ...',
+    a:['Menambah dua angka','Membandingkan apakah dua nilai sama','Menggerakkan kucing','Menghentikan program'], c:1,
+    e:'Operator = menguji kesamaan dua nilai.'
+  },
+  {
+    q:'Pada kondisi jawaban = (5 + 3), berapa jawaban yang membuat kondisi bernilai benar?',
+    a:['5','3','8','15'], c:2,
+    e:'5 + 3 = 8, jadi jawaban 8 membuat kondisi benar.'
+  },
+  {
+    q:'Kucing harus terus bergerak dan setiap saat mengecek apakah menyentuh pinggir. Blok Jika sebaiknya diletakkan ...',
+    a:['Di dalam Forever','Di luar semua event','Setelah program dihentikan','Tidak perlu digunakan'], c:0,
+    e:'Kondisi perlu diperiksa berulang-ulang, jadi diletakkan di dalam Forever.'
+  },
+  {
+    q:'Program belum bekerja sesuai rencana. Langkah debugging yang paling tepat adalah ...',
+    a:['Menghapus seluruh kode','Mengubah banyak blok sekaligus','Mencari bagian yang bermasalah, mengubah satu bagian, lalu menguji lagi','Langsung membuat proyek baru'], c:2,
+    e:'Debugging dilakukan bertahap agar penyebab masalah dapat ditemukan.'
+  },
+  {
+    q:'Dalam kerja kelompok, mengapa operator Chromebook perlu berganti?',
+    a:['Agar semua murid mendapat kesempatan praktik','Agar program semakin panjang','Agar layar lebih terang','Agar tugas lebih sulit'], c:0,
+    e:'Pergantian peran membuat kesempatan praktik lebih merata.'
+  }
+];
+let qi=0,score=0,quizLocked=false;
+function renderQuiz(){
+  const item=quiz[qi];
+  document.getElementById('quizPos').textContent=qi+1;
+  document.getElementById('quizQuestion').textContent=item.q;
+  document.getElementById('quizAnswers').innerHTML=item.a.map((x,i)=>`<button class="answer" onclick="chooseAnswer(${i},this)">${String.fromCharCode(65+i)}. ${x}</button>`).join('');
+  const fb=document.getElementById('quizFb');fb.className='feedback';fb.textContent='Pilih satu jawaban.';
+  document.getElementById('quizNext').style.display='none';
+  document.getElementById('quizProgress').style.width=(qi/quiz.length*100)+'%';
+  quizLocked=false;
+}
+function chooseAnswer(i,btn){
+  if(quizLocked)return;
+  quizLocked=true;
+  const item=quiz[qi], buttons=[...document.querySelectorAll('#quizAnswers .answer')];
+  buttons[item.c].classList.add('correct');
+  const fb=document.getElementById('quizFb');
+  if(i===item.c){
+    score++;fb.className='feedback good';fb.textContent='Benar. '+item.e;
+  }else{
+    btn.classList.add('wrong');fb.className='feedback bad';fb.textContent='Belum tepat. '+item.e;
+  }
+  document.getElementById('quizNext').style.display='inline-block';
+  document.getElementById('quizProgress').style.width=((qi+1)/quiz.length*100)+'%';
+}
+function nextQuestion(){
+  if(qi<quiz.length-1){qi++;renderQuiz();return}
+  const q=document.getElementById('quizQuestion');
+  const a=document.getElementById('quizAnswers');
+  q.textContent='Kuis selesai!';
+  a.innerHTML=`<div class="score" style="grid-column:1/-1">${score}/10</div>`;
+  const fb=document.getElementById('quizFb');
+  fb.className=score>=8?'feedback good':'feedback';
+  fb.textContent=score>=8?'Bagus! Pemahaman dasarmu sudah kuat.':score>=6?'Cukup baik. Ulangi konsep yang masih keliru lalu coba lagi.':'Belum masalah. Kembali ke materi, diskusikan, lalu coba kuis lagi.';
+  document.getElementById('quizNext').style.display='none';
+}
+function restartQuiz(){qi=0;score=0;renderQuiz()}
+
+// Reflection
+const reflections=[
+  'Apa perbedaan Repeat dan Forever? Berikan satu contoh penggunaan masing-masing.',
+  'Apa perbedaan Jika–Maka dan Jika–Maka–Jika Tidak? Jelaskan dengan bahasamu sendiri.',
+  'Apa fungsi operator + dan operator = pada program Kucing Cerdas?',
+  'Bagian kode apa yang paling mudah kamu pahami hari ini? Mengapa?',
+  'Kesalahan apa yang ditemukan kelompokmu saat program diuji?',
+  'Apa langkah yang dilakukan kelompokmu untuk memperbaiki kesalahan tersebut?',
+  'Bagaimana pembagian peran membantu semua anggota kelompok ikut belajar?',
+  'Jika membuat proyek baru, konsep apa yang ingin kamu gunakan lagi dan untuk apa?'
+];
+function showReflection(i){
+  const fb=document.getElementById('reflectionFb');
+  fb.className='feedback good';
+  fb.textContent=reflections[i];
+}
+function confidence(text){
+  const fb=document.getElementById('confidenceFb');
+  fb.className='feedback good';fb.textContent=text;
+}
+
+renderQuiz();
 </script>
 </body>
 </html>
